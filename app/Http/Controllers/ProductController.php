@@ -55,7 +55,10 @@ class ProductController extends Controller
         Product::create($request->only(["title","price","image","description","rating","category","supplier"]));
 
         return back();
-
+    }
+    public function delete(Request $request):View{
+        Product::destroy($request->id);
+        return $this->index();
     }
 }
 

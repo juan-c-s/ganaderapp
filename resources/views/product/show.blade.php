@@ -30,6 +30,12 @@
           <h5 class="card-title">
             Image: <img  src={{$viewData["product"]["image"]}}>
         </h5>
+        <form method="POST" action="{{ route('product.delete') }}">
+        @csrf
+        <input type="hidden" name="id" value="{{$viewData["product"]["id"]}}" />
+        <input type="submit" class="btn btn-primary" value="delete" />
+        </form>
+
   </div>
     </div>
   </div>
