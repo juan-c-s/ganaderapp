@@ -22,8 +22,8 @@ class ProductController extends Controller
         $viewData = [];
         if($id > 0){
             $product = Product::findOrFail($id);
-            $viewData["title"] = $product["title"]." - Ganaderapp";
-            $viewData["subtitle"] =  $product["title"]." - Cow information";
+            $viewData["title"] = $product->getTitle()." - Ganaderapp";
+            $viewData["subtitle"] =  $product->getTitle()." - Cow information";
             $viewData["product"] = $product;
             return view('product.show')->with("viewData", $viewData);
         }else{
@@ -41,21 +41,12 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
-        $request->validate([
-            "title" => "required",
-            "price" => "required",
-            "image" => "required",
-            "description" => "required",
-            "rating" => "required",
-            "category" => "required",
-            "supplier" => "required",
-
-        ]);
+        Product::validate($request);
         //here will be the code to call the model and save it to the database
         Product::create($request->only(["title","price","image","description","rating","category","supplier"]));
-
         return back();
     }
+
     public function delete(Request $request):View{
         Product::destroy($request->id);
         return $this->index();

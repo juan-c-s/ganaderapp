@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+
 
 class Product extends Model
 {
@@ -14,9 +16,26 @@ class Product extends Model
      * $this->attributes['id'] - int - contains the product primary key (id)
      * $this->attributes['name'] - string - contains the product name
      * $this->attributes['price'] - int - contains the product price
-    */
+     * ***#*** Agregar created_at y updated_at
+    */ 
 
     protected $fillable = ['title','price','image','description','rating','category','supplier'];
+
+    public static function validate(Request $request):void{
+        $newProduct = new Product();
+        // $newProduct->setCategory(request->category);
+        // $newProduct->save();
+        $request->validate([
+            "title" => "required",
+            "price" => "required|numeric|gt:0",
+            "image" => "required",
+            "description" => "required",
+            "rating" => "required|numeric|gt:0",
+            "category" => "required",
+            "supplier" => "required",
+
+        ]);
+    }
 
     public function getId(): int
     {
@@ -30,32 +49,32 @@ class Product extends Model
 
     public function getTitle(): string
     {
-        return $this->attributes['name'];
+        return $this->attributes['title'];
     }
 
-    public function setTitle($name) : void
+    public function setTitle($title) : void
     {
-        $this->attributes['name'] = $name;
+        $this->attributes['title'] = $title;
     }
 
     public function getImage(): string
     {
-        return $this->attributes['name'];
+        return $this->attributes['image'];
     }
 
-    public function setImage($name) : void
+    public function setImage(string $image) : void
     {
-        $this->attributes['name'] = $name;
+        $this->attributes['image'] = $image;
     }
 
     public function getCategory(): string
     {
-        return $this->attributes['name'];
+        return $this->attributes['category'];
     }
 
-    public function setCategory($name) : void
+    public function setCategory($category) : void
     {
-        $this->attributes['name'] = $name;
+        $this->attributes['category'] = $category;
     }
 
     public function getPrice(): int
@@ -70,31 +89,31 @@ class Product extends Model
 
     public function getSupplier(): string
     {
-        return $this->attributes['name'];
+        return $this->attributes['supplier'];
     }
 
-    public function setSupplier($name) : void
+    public function setSupplier(string $supplier) : void
     {
-        $this->attributes['name'] = $name;
+        $this->attributes['supplier'] = $supplier;
     }
 
     public function getDescription(): string
     {
-        return $this->attributes['name'];
+        return $this->attributes['description'];
     }
 
-    public function setDescription($name) : void
+    public function setDescription(string $description) : void
     {
-        $this->attributes['name'] = $name;
+        $this->attributes['description'] = $description;
     }
 
     public function getRating(): int
     {
-        return $this->attributes['name'];
+        return $this->attributes['rating'];
     }
 
-    public function setRating($name) : void
+    public function setRating( string $rating) : void
     {
-        $this->attributes['name'] = $name;
+        $this->attributes['rating'] = $name;
     }
 }

@@ -10,29 +10,29 @@
     <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">
-            {{ $viewData["product"]["title"] }}
+            {{ $viewData["product"]->getTitle() }}
           </h5>
-          <p class="card-text"> Description: {{ $viewData["product"]["description"] }}</p>
+          <p class="card-text"> Description: {{ $viewData["product"]->getDescription() }}</p>
         </div>
         <div class="card-body">
           <h5 class="card-title">
-           price :  {{ $viewData["product"]["price"] }}
+           price :  {{ $viewData["product"]->getPrice()}}
           </h5>
           <h5 class="card-title">
-           Seller's rating :  {{ $viewData["product"]["rating"] }}
+           Seller's rating :  {{ $viewData["product"]->getRating()}}
           </h5>
           <h5 class="card-title">
-           Breed :  {{ $viewData["product"]["category"] }}
+           Breed :  {{ $viewData["product"]->getCategory() }}
           </h5>
           <h5 class="card-title">
-            Supplier :  {{ $viewData["product"]["supplier"] }}
+            Supplier :  {{ $viewData["product"]->getSupplier() }}
           </h5>
           <h5 class="card-title">
-            Image: <img  src={{$viewData["product"]["image"]}}>
+            Image: <img  src={{$viewData["product"]->getImage()}}>
         </h5>
         <form method="POST" action="{{ route('product.delete') }}">
         @csrf
-        <input type="hidden" name="id" value="{{$viewData["product"]["id"]}}" />
+        <input type="hidden" name="id" value="{{$viewData["product"]->getId()}}" />
         <input type="submit" class="btn btn-primary" value="delete" />
         </form>
 
