@@ -29,3 +29,7 @@ Route::get('/image', 'App\Http\Controllers\ImageController@index')->name("image.
 Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name("image.save");
 
 
+
+Auth::routes();
+
+
