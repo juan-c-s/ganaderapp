@@ -55,9 +55,9 @@ class Product extends Model
         return $this->attributes['createdAt'];
     }
 
-    public function setCreatedAt(string $createdAt) : void
+    public function setCreatedAt(string $createAt) : void
     {
-        $this->attributes['createdAt'] = $createdAt;
+        $this->attributes['createAt'] = $createAt;
     }
 
     public function getUpdatedAt(): string
@@ -69,4 +69,5 @@ class Product extends Model
     {
         $this->attributes['updatedAt'] = $updatedAt;
     }
+
 }
