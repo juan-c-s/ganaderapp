@@ -82,7 +82,7 @@ class Product extends Model
         return $this->attributes['price'];
     }
 
-    public function setPrice($price) : int
+    public function setPrice($price) : void
     {
         $this->attributes['price'] = $price;
     }
@@ -114,6 +114,6 @@ class Product extends Model
 
     public function setRating( string $rating) : void
     {
-        $this->attributes['rating'] = $name;
+        $this->attributes['rating'] = $rating;
     }
 }
