@@ -23,12 +23,12 @@ class AdminController extends Controller
 
     public function deleteEvent(Request $request): Response
     {
-        // Event::where('title', 'LIKE', $request->event)->delete();
+        Event::where('title', 'LIKE', $request->event)->delete();
         return redirect()->route('admin.index');
     }
     public function deleteProduct(Request $request): Response
     {
-
+        Product::where('title', 'LIKE', $request->event)->delete();
         return redirect()->route('admin.index');
     }
 
