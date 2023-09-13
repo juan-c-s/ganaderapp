@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Event extends Model
 {
@@ -21,8 +22,23 @@ class Event extends Model
      * $this->attributes['location'] - string - contains the physical location
      */
 
-    protected $fillable = ['title', 'user', 'category', 'date', 'description', 'image', 'location'];
+    protected $fillable = ['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location'];
 
+    public static function validate(Request $request):void{
+        $newEvent = new Event();
+        // $newProduct->setCategory(request->category);
+        // $newProduct->save();
+        $request->validate([
+            'title'=>'required',
+            'category'=>'required',
+            'maxCapacity'=>'required',
+            'date'=>'required',
+            'description'=>'required',
+            'image'=>'required',
+            'location'=>'required',
+            
+        ]);
+    }
     public function getId(): int
     {
         return $this->attributes['id'];
@@ -92,9 +108,19 @@ class Event extends Model
     {
         return $this->attributes['location'];
     }
-
+    
     public function setLocation(string $location): void
     {
         $this->attributes['location'] = $location;
+    }
+    
+    public function getMaxCapacity(): int
+    {
+        return $this->attributes['maxCapacity'];
+    }
+
+    public function setMaxCapacity(int $maxCapacity): void
+    {
+        $this->attributes['maxCapacity'] = $maxCapacity;
     }
 }

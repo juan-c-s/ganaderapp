@@ -6,6 +6,8 @@ use Illuminate\Http\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Product;
+use App\Models\Event;
 
 class AdminController extends Controller
 {
@@ -21,12 +23,12 @@ class AdminController extends Controller
 
     public function deleteEvent(Request $request): Response
     {
-        // dd($request);
+        // Event::where('title', 'LIKE', $request->event)->delete();
         return redirect()->route('admin.index');
     }
     public function deleteProduct(Request $request): Response
     {
-        
+
         return redirect()->route('admin.index');
     }
 
