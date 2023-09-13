@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Http\Request;
 class Event extends Model
 {
-    use HasFactory;
+    // use HasFactory;
 
     /**
      * PRODUCT ATTRIBUTES
@@ -19,6 +19,16 @@ class Event extends Model
      */
 
     protected $fillable = [];
+
+    public static function validate(Request $request): void
+    {
+        $request->validate([
+            "orderItems" => "required|string",
+            "user" => "required|string",
+            "dateDelivery" => "required|date",
+            "receipt" => "required|string",
+        ]);
+    }
 
     public function getId(): int
     {

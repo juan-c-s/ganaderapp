@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Http\Request;
 class Event extends Model
 {
-    use HasFactory;
+    // use HasFactory;
 
     /**
      * PRODUCT ATTRIBUTES
@@ -15,13 +15,26 @@ class Event extends Model
      * $this->attributes['title'] - string - contains the name of the event
      * $this->attributes['user'] - string - contains the owner's username
      * $this->attributes['category'] - string -
-     * $this->attributes['date'] - string - contains date of the event
+     * $this->attributes['date'] - date - contains date of the event
      * $this->attributes['description'] - string - contains a event description
      * $this->attributes['image'] - string - contains a base64 encoded image
      * $this->attributes['location'] - string - contains the physical location
      */
 
     protected $fillable = ['title', 'user', 'category', 'date', 'description', 'image', 'location'];
+
+    public static function validate(Request $request): void
+    {
+        $request->validate([
+            "title" => "required|string",
+            "user" => "required|string",
+            "category" => "required|string",
+            "date" => "required|date",
+            "description" => "required|string",
+            "image" => "required|string",
+            "location" => "required|string",
+        ]);
+    }
 
     public function getId(): int
     {
