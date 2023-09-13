@@ -29,6 +29,11 @@ Route::get('/image', 'App\Http\Controllers\ImageController@index')->name("image.
 Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name("image.save");
 
 
+Route::middleware('admin')->group(function () { 
+    Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name("admin.index");
+    Route::post('/admin/deleteEvent', 'App\Http\Controllers\AdminController@deleteEvent')->name("admin.deleteEvent");
+    Route::post('/admin/deleteProduct', 'App\Http\Controllers\AdminController@deleteProduct')->name("admin.deleteProduct");
+});
 
 Auth::routes();
 

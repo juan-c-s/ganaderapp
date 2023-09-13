@@ -2,7 +2,6 @@
 
 ## Ganaderapp 
 
-
 ## framework Laravel con php como lenguaje
 Laravel es un framework para desarrollar páginas web con php. Este framework es conocido por si amigabilidad con el desarrollador, ya que cuenta con una sintaxis simple y herramientas que facilitan el desarrollo como el contenedor para la inyección de dependencias y muchos más. 
 

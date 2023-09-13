@@ -33,7 +33,7 @@ class Event extends Model
         return $this->attributes['title'];
     }
 
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->attributes['title'] = $title;
     }
@@ -43,7 +43,7 @@ class Event extends Model
         return $this->attributes['user'];
     }
 
-    public function setUser($user): void
+    public function setUser(string $user): void
     {
         $this->attributes['user'] = $user;
     }
@@ -53,7 +53,7 @@ class Event extends Model
         return $this->attributes['category'];
     }
 
-    public function setCategory($category): void
+    public function setCategory(string $category): void
     {
         $this->attributes['category'] = $category;
     }
@@ -63,7 +63,7 @@ class Event extends Model
         return $this->attributes['date'];
     }
 
-    public function setDate($date): void
+    public function setDate(string $date): void
     {
         $this->attributes['date'] = $date;
     }
@@ -73,7 +73,7 @@ class Event extends Model
         return $this->attributes['description'];
     }
 
-    public function setDescription($description): void
+    public function setDescription(string $description): void
     {
         $this->attributes['description'] = $description;
     }
@@ -83,7 +83,7 @@ class Event extends Model
         return $this->attributes['image'];
     }
 
-    public function setImage($image): void
+    public function setImage(string $image): void
     {
         $this->attributes['image'] = $image;
     }
@@ -93,7 +93,7 @@ class Event extends Model
         return $this->attributes['location'];
     }
 
-    public function setLocation($location): void
+    public function setLocation(string $location): void
     {
         $this->attributes['location'] = $location;
     }

@@ -19,7 +19,7 @@ class User extends Authenticatable
      * $this->attributes['password'] - string - contains the password of the user
      * $this->attributes['address'] - string - contains the addres of the user
      * $this->attributes['wallet'] - int - contains currency of the user
-     * $this->attributes['rol'] - string - contains the rol of the user (OwnerEvent - Participant)
+     * $this->attributes['role'] - string - contains the role of the user (OwnerEvent - Participant)
      * ***#*** Agregar created_at y updated_at
     */ 
 
@@ -34,7 +34,7 @@ class User extends Authenticatable
         'password',
         'address',
         'wallet',
-        'rol'
+        'role'
     ];
 
     /**
@@ -107,13 +107,13 @@ class User extends Authenticatable
         $this->attributes['wallet'] = $wallet;
     }
 
-    public function getRol(): string
+    public function getRole(): string
     {
-        return $this->attributes['rol'];
+        return $this->attributes['role'];
     }
 
-    public function setRol(string $rol): void
+    public function setRole(string $role): void
     {
-        $this->attributes['rol'] = $rol;
+        $this->attributes['role'] = $role;
     }
 }
