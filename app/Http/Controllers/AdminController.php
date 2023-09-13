@@ -28,7 +28,7 @@ class AdminController extends Controller
     }
     public function deleteProduct(Request $request): Response
     {
-        Product::where('title', 'LIKE', $request->event)->delete();
+        Product::where('title', 'LIKE', $request->product)->delete();
         return redirect()->route('admin.index');
     }
 
