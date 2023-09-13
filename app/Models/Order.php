@@ -20,6 +20,16 @@ class Event extends Model
 
     protected $fillable = [];
 
+    public function orderItem()
+    {
+        return $this->hasMany(OrderItem::class, 'events'); // Relación uno a muchos (un evento tiene muchos pedidos)
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'users'); // Relación uno a muchos (un evento tiene muchos pedidos)
+    }
+
     public static function validate(Request $request): void
     {
         $request->validate([

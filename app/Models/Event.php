@@ -23,6 +23,11 @@ class Event extends Model
 
     protected $fillable = ['title', 'user', 'category', 'date', 'description', 'image', 'location'];
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'users'); // Relación uno a muchos (un evento tiene muchos pedidos)
+    }
+
     public static function validate(Request $request): void
     {
         $request->validate([
