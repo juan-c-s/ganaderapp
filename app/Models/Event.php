@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+
 class Event extends Model
 {
     // use HasFactory;
@@ -21,23 +22,26 @@ class Event extends Model
      * $this->attributes['location'] - string - contains the physical location
      */
 
-    protected $fillable = ['title', 'user', 'category', 'date', 'description', 'image', 'location'];
-
+    protected $fillable = ['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location'];
+  
     public function user()
     {
         return $this->hasOne(User::class, 'users'); // Relación uno a muchos (un evento tiene muchos pedidos)
     }
 
-    public static function validate(Request $request): void
-    {
+    public static function validate(Request $request):void{
+        $newEvent = new Event();
+        // $newProduct->setCategory(request->category);
+        // $newProduct->save();
         $request->validate([
-            "title" => "required|string",
-            "user" => "required|string",
-            "category" => "required|string",
-            "date" => "required|date",
-            "description" => "required|string",
-            "image" => "required|string",
-            "location" => "required|string",
+            'title'=>'required',
+            'category'=>'required',
+            'maxCapacity'=>'required',
+            'date'=>'required',
+            'description'=>'required',
+            'image'=>'required',
+            'location'=>'required',
+            
         ]);
     }
 
@@ -51,7 +55,7 @@ class Event extends Model
         return $this->attributes['title'];
     }
 
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->attributes['title'] = $title;
     }
@@ -61,7 +65,7 @@ class Event extends Model
         return $this->attributes['user'];
     }
 
-    public function setUser($user): void
+    public function setUser(string $user): void
     {
         $this->attributes['user'] = $user;
     }
@@ -71,7 +75,7 @@ class Event extends Model
         return $this->attributes['category'];
     }
 
-    public function setCategory($category): void
+    public function setCategory(string $category): void
     {
         $this->attributes['category'] = $category;
     }
@@ -81,7 +85,7 @@ class Event extends Model
         return $this->attributes['date'];
     }
 
-    public function setDate($date): void
+    public function setDate(string $date): void
     {
         $this->attributes['date'] = $date;
     }
@@ -91,7 +95,7 @@ class Event extends Model
         return $this->attributes['description'];
     }
 
-    public function setDescription($description): void
+    public function setDescription(string $description): void
     {
         $this->attributes['description'] = $description;
     }
@@ -101,7 +105,7 @@ class Event extends Model
         return $this->attributes['image'];
     }
 
-    public function setImage($image): void
+    public function setImage(string $image): void
     {
         $this->attributes['image'] = $image;
     }
@@ -110,9 +114,19 @@ class Event extends Model
     {
         return $this->attributes['location'];
     }
-
-    public function setLocation($location): void
+    
+    public function setLocation(string $location): void
     {
         $this->attributes['location'] = $location;
+    }
+    
+    public function getMaxCapacity(): int
+    {
+        return $this->attributes['maxCapacity'];
+    }
+
+    public function setMaxCapacity(int $maxCapacity): void
+    {
+        $this->attributes['maxCapacity'] = $maxCapacity;
     }
 }

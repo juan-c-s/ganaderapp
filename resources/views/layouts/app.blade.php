@@ -21,6 +21,7 @@
           <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
           <a class="nav-link active" href="{{ route('product.index') }}">Marketplace</a>
           <a class="nav-link active" href="{{ route('product.create') }}">Create Product</a>
+          <a class="nav-link active" href="{{ route('event.create') }}">Create Event</a>
           <a class="nav-link active" href="{{ route('cart.index') }}">Cart</a>
           <div class="vr bg-white mx-2 d-none d-lg-block"></div>
           @guest 
@@ -39,7 +40,7 @@
 
   <header class="masthead bg-primary text-white text-center py-4">
     <div class="container d-flex align-items-center flex-column">
-      <h2>@yield('subtitle', 'A Laravel EAFIT App')</h2>
+      <h2>@yield('subtitle', 'Welcom')</h2>
     </div>
   </header>
   <!-- header -->
@@ -51,12 +52,6 @@
   <!-- footer -->
   <div class="copyright py-4 text-center text-white">
     <div class="container">
-      <small>
-        Copyright - <a class="text-reset fw-bold text-decoration-none" target="_blank"
-          href="https://twitter.com/danielgarax">
-          Daniel Correa
-        </a>
-      </small>
     </div>
   </div>
   <!-- footer -->

@@ -28,7 +28,15 @@ Route::get('/cart/removeAll/', 'App\Http\Controllers\CartController@removeAll')-
 Route::get('/image', 'App\Http\Controllers\ImageController@index')->name("image.index");
 Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name("image.save");
 
+Route::get('/events', 'App\Http\Controllers\EventController@index')->name("event.index");
+Route::get('/events/create', 'App\Http\Controllers\EventController@create')->name("event.create");
+Route::post('/events/save', 'App\Http\Controllers\EventController@save')->name("event.save");
 
+Route::middleware('admin')->group(function () { 
+    Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name("admin.index");
+    Route::post('/admin/deleteEvent', 'App\Http\Controllers\AdminController@deleteEvent')->name("admin.deleteEvent");
+    Route::post('/admin/deleteProduct', 'App\Http\Controllers\AdminController@deleteProduct')->name("admin.deleteProduct");
+});
 
 Auth::routes();
 
