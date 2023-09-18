@@ -19,7 +19,7 @@
               @csrf
               <input type="text" class="form-control mb-2" placeholder="Enter title" name="title" value="{{ old('title') }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ old('description') }}" />
-              <input type="text" class="form-control mb-2" placeholder="Enter date" name="date" value="{{ old('date') }}" />
+              <input type="date" class="form-control mb-2" placeholder="Enter date" name="date" value="{{ old('date') }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter category" name="category" value="{{ old('category') }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter location" name="location" value="{{ old('location') }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter image url" name="image" value="{{ old('image') }}" />

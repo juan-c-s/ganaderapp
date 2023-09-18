@@ -13,7 +13,7 @@ class ProductFactory extends Factory
             'category' => $this->faker->word,
             'price' => $this->faker->numberBetween($min = 200, $max = 9000),
             'description' => $this->faker->sentence,
-            'rating' => $this->faker->numberBetween($min=0, $max=5),            
+            'rating' => $this->faker->numberBetween($min=0, $max=5),
             'supplier' => $this->faker->name,
             'image' => $this->faker->imageUrl($width = 160, $height = 120),
         ];
