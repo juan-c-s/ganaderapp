@@ -20,4 +20,5 @@
   @endforeach
 </div>
 <div id="csrf-token" data-token="{{ csrf_token() }}"></div>
+<div id="events" style="display: none;">'@json($viewData["events"])'</div>
 @endsection

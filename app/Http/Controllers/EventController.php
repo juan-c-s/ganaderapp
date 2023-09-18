@@ -41,13 +41,16 @@ class EventController extends Controller
 
     public function dateFilter(Request $request)
     {
-        if ($request->input('date') == '') {
-            return response()->json(Event::all());
+        $allEvents = $request->input('events');
+        $filterDate = $request->input('date');
+        if ($filterDate == '') {
+            return response()->json($allEvents);
         }
         else {
-            $filtro = $request->input('date');
-            $resultados = Event::where('date', $filtro)->get();
-            return response()->json($resultados);
+            $filtered = array_filter($allEvents, function($objeto) use ($filterDate) {
+                return $objeto['date'] == $filterDate;
+            });
+            return response()->json($filtered);
         }
     }
 }
