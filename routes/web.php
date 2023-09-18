@@ -31,8 +31,9 @@ Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name("i
 Route::get('/events', 'App\Http\Controllers\EventController@index')->name("event.index");
 Route::get('/events/create', 'App\Http\Controllers\EventController@create')->name("event.create");
 Route::post('/events/save', 'App\Http\Controllers\EventController@save')->name("event.save");
+Route::post('/events/dateFilter', 'App\Http\Controllers\EventController@dateFilter')->name('event.dateFilter');
 
-Route::middleware('admin')->group(function () { 
+Route::middleware('admin')->group(function () {
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name("admin.index");
     Route::post('/admin/deleteEvent', 'App\Http\Controllers\AdminController@deleteEvent')->name("admin.deleteEvent");
     Route::post('/admin/deleteProduct', 'App\Http\Controllers\AdminController@deleteProduct')->name("admin.deleteProduct");

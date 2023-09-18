@@ -21,13 +21,14 @@
           <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
           <a class="nav-link active" href="{{ route('product.index') }}">Marketplace</a>
           <a class="nav-link active" href="{{ route('product.create') }}">Create Product</a>
+          <a class="nav-link active" href="{{ route('event.index') }}">Events</a>
           <a class="nav-link active" href="{{ route('event.create') }}">Create Event</a>
           <a class="nav-link active" href="{{ route('cart.index') }}">Cart</a>
           <div class="vr bg-white mx-2 d-none d-lg-block"></div>
-          @guest 
+          @guest
           <a class="nav-link active" href="{{ route('login') }}">Login</a>
           <a class="nav-link active" href="{{ route('register') }}">Register</a>
-          @else 
+          @else
           <form id="logout" action="{{ route('logout') }}" method="POST"> 
             <a role="button" class="nav-link active" onclick="document.getElementById('logout').submit();">Logout</a>
             @csrf
@@ -56,7 +57,6 @@
   </div>
   <!-- footer -->
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
