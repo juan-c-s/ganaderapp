@@ -3,31 +3,41 @@
 namespace App\Models;
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
+use app\Models\OrderItem;
+use app\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-class Event extends Model
+class Order extends Model
 {
     // use HasFactory;
 
     /**
-     * PRODUCT ATTRIBUTES
+     * ORDER ATTRIBUTES
      * $this->attributes['id'] - int - unique number for a event
-     * $this->attributes['orderItems'] - string - items that belong to each order
-     * $this->attributes['user'] - string - contains the owner's username
-     * $this->attributes['dateDelivery'] - string
-     * $this->attributes['receipt'] - string
+     * $this->attributes['dateDelivery'] - string - contains the date of delivery
+     * $this->attributes['receipt'] - string - contains the recipt of the product
      */
 
     protected $fillable = [];
 
-    public function orderItem()
+    public function orderItem(): OrderItem
     {
-        return $this->hasMany(OrderItem::class, 'events'); // Relación uno a muchos (un evento tiene muchos pedidos)
+        return $this->belongsTo(OrderItem::class);
     }
 
-    public function user()
+    public function getOrderItem(): OrderItem
     {
-        return $this->hasOne(User::class, 'users'); // Relación uno a muchos (un evento tiene muchos pedidos)
+        return $this->orderItem;
+    }
+
+    public function user(): User
+    {
+        return $this->hasOne(User::class);
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
     }
 
     public static function validate(Request $request): void
@@ -45,24 +55,9 @@ class Event extends Model
         return $this->attributes['id'];
     }
 
-    public function getOrderItems(): string
+    public function setId(): void
     {
-        return $this->attributes['orderItems'];
-    }
-
-    public function setOrderitems($orderItems): void
-    {
-        $this->attributes['orderItems'] = $orderItems;
-    }
-
-    public function getUsers(): string
-    {
-        return $this->attributes['users'];
-    }
-
-    public function setUser($user): void
-    {
-        $this->attributes['user'] = $user;
+        $this->attributes['id'] = $id;
     }
 
     public function getDateDelivery(): string
