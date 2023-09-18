@@ -2,31 +2,51 @@
 
 namespace App\Models;
 
+use app\Models\Product;
+use app\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 
-class Review extends Model
+class OrderItem extends Model
 {
     use HasFactory;
 
     /**
      * ORDERITEM ATTRIBUTES
-     * $this->attributes['amount'] - int - contains the amount of the order
-     * $this->attributes['fullValue'] - int - contains the product name
-     * $this->attributes['dateOfPurchase'] - string - contains the date of the purchase of the product
+     * $this->attributes['quantity'] - int - contains the number of products that the user want to buy
+     * $this->attributes['fullValue'] - int - contains the total amount of the purchase
+     * $this->attributes['created_at'] - string - contains the created_at timestamp
+     * $this->attributes['updated_at'] - string - contains the updated_at timestamp
     */ 
 
-    protected $fillable = ['amount','fullValue','dateOfPurchase'];
+    protected $fillable = [];
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
+
+    public function getOrder(): Order
+    {
+        return $this->order;
+    }
 
     public static function validate(Request $request):void{
         $request->validate([
             "amount" => "required",
             "fullValue" => "required",
-            "dateOfPurchase" => "required",
         ]);
     }
 
@@ -50,13 +70,24 @@ class Review extends Model
         $this->attributes['fullValue'] = $fullValue;
     }
 
-    public function getDateOfPurchase(): string
+    public function getCreatedAt(): string
     {
-        return $this->attributes['dateOfPurchase'];
+        return $this->attributes['createdAt'];
     }
 
-    public function setDateOfPurchase(string $dateOfPurchase) : void
+    public function setCreatedAt(string $createAt) : void
     {
-        $this->attributes['dateOfPurchase'] = $dateOfPurchase;
+        $this->attributes['createAt'] = $createAt;
     }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updatedAt'];
+    }
+
+    public function setUpdatedAt(string $updatedAt) : void
+    {
+        $this->attributes['updatedAt'] = $updatedAt;
+    }
+
 }

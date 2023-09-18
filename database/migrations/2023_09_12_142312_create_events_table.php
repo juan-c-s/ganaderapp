@@ -22,10 +22,6 @@ return new class extends Migration
             $table->string('location');
             $table->timestamps();
         });
-
-        Schema::table('events', function (Blueprint $table) {
-            $table->foreign('user')->references('id')->on('users');
-        });
     }
 
     /**

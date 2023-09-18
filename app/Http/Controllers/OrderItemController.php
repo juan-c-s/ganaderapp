@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use app\Models\Product;
+use App\Models\Product;
 
-class CartController extends Controller
+class OrderItemController extends Controller
 {
     public function index(Request $request): View
     {
-        $products = [];
+        $products = Product::all();
         $cartProducts = [];
         $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
         if ($cartProductData) {
@@ -46,4 +46,6 @@ class CartController extends Controller
 
         return back();
     }
+ 
+
 }

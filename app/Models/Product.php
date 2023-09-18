@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\OrderItem;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -14,12 +16,36 @@ class Product extends Model
     /**
      * PRODUCT ATTRIBUTES
      * $this->attributes['id'] - int - contains the product primary key (id)
-     * $this->attributes['name'] - string - contains the product name
+     * $this->attributes['title'] - string - contains the product name
      * $this->attributes['price'] - int - contains the product price
+     * $this->attributes['image'] - int - contains the product price
+     * $this->attributes['description'] - int - contains the product price
+     * $this->attributes['category'] - int - contains the product price
+     * $this->attributes['supplier'] - int - contains the product price
      * ***#*** Agregar created_at y updated_at
     */ 
 
     protected $fillable = ['title','price','image','description','rating','category','supplier'];
+
+    public function orderItem()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function getOrderItem(): OrderItem
+    {
+        return $this->product;
+    }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function getReview(): Review
+    {
+        return $this->review;
+    }
 
     public static function validate(Request $request):void{
         $newProduct = new Product();
@@ -105,15 +131,5 @@ class Product extends Model
     public function setDescription(string $description) : void
     {
         $this->attributes['description'] = $description;
-    }
-
-    public function getRating(): int
-    {
-        return $this->attributes['rating'];
-    }
-
-    public function setRating( string $rating) : void
-    {
-        $this->attributes['rating'] = $rating;
     }
 }

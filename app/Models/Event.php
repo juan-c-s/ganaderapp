@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
+use app\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -11,11 +12,10 @@ class Event extends Model
     // use HasFactory;
 
     /**
-     * PRODUCT ATTRIBUTES
+     * EVENT ATTRIBUTES
      * $this->attributes['id'] - int - unique number for a event
      * $this->attributes['title'] - string - contains the name of the event
-     * $this->attributes['user'] - string - contains the owner's username
-     * $this->attributes['category'] - string -
+     * $this->attributes['category'] - string - contains the category of the event
      * $this->attributes['date'] - date - contains date of the event
      * $this->attributes['description'] - string - contains a event description
      * $this->attributes['image'] - string - contains a base64 encoded image
@@ -26,7 +26,12 @@ class Event extends Model
   
     public function user()
     {
-        return $this->hasOne(User::class, 'users'); // Relación uno a muchos (un evento tiene muchos pedidos)
+        return $this->hasOne(User::class);
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
     }
 
     public static function validate(Request $request):void{
@@ -58,16 +63,6 @@ class Event extends Model
     public function setTitle(string $title): void
     {
         $this->attributes['title'] = $title;
-    }
-
-    public function getUser(): string
-    {
-        return $this->attributes['user'];
-    }
-
-    public function setUser(string $user): void
-    {
-        $this->attributes['user'] = $user;
     }
 
     public function getCategory(): string
