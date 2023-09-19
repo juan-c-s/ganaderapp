@@ -11,6 +11,11 @@ use App\Models\Event;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        // Assign to ALL methods in this Controller
+        $this->middleware('auth');
+    }
     public function index(Request $request): View
     {
         $viewData =[];

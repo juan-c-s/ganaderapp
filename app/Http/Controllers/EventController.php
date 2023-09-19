@@ -12,6 +12,11 @@ use App\Util\ImageUtil;
 class EventController extends Controller
 {
 
+    public function __construct()
+    {
+        // Assign to ALL methods in this Controller
+        $this->middleware('auth');
+    }
     public function index(): View
     {
         $viewData = [];
