@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -17,8 +16,8 @@ class EventApiController extends Controller
             return response()->json($allEvents);
         }
         else {
-            $filtered = array_filter($allEvents, function($objeto) use ($filterDate) {
-                return $objeto['date'] == $filterDate;
+            $filtered = array_filter($allEvents, function($object) use ($filterDate) {
+                return $object['date'] == $filterDate;
             });
             return response()->json($filtered);
         }
