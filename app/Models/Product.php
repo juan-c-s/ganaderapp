@@ -7,7 +7,7 @@ use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\Collection;
 
 class Product extends Model
 {
@@ -27,30 +27,27 @@ class Product extends Model
 
     protected $fillable = ['title','price','image','description','rating','category','supplier'];
 
-    public function orderItem()
+    public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
 
-    public function getOrderItem(): OrderItem
+    public function getOrderItems(): OrderItem
     {
         return $this->product;
     }
 
-    public function review()
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }
 
-    public function getReview(): Review
+    public function getReviews():Collection
     {
-        return $this->review;
+        return $this->reviews;
     }
 
     public static function validate(Request $request):void{
-        $newProduct = new Product();
-        // $newProduct->setCategory(request->category);
-        // $newProduct->save();
         $request->validate([
             "title" => "required",
             "price" => "required|numeric|gt:0",
@@ -59,7 +56,6 @@ class Product extends Model
             "rating" => "required|numeric|gt:0",
             "category" => "required",
             "supplier" => "required",
-
         ]);
     }
 
@@ -131,5 +127,15 @@ class Product extends Model
     public function setDescription(string $description) : void
     {
         $this->attributes['description'] = $description;
+    }
+
+    public function getRating(): string
+    {
+        return $this->attributes['rating'];
+    }
+
+    public function setRating(string $rating) : void
+    {
+        $this->attributes['rating'] = $rating;
     }
 }

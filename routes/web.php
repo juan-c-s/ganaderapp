@@ -33,6 +33,8 @@ Route::get('/events/create', 'App\Http\Controllers\EventController@create')->nam
 Route::post('/events/save', 'App\Http\Controllers\EventController@save')->name("event.save");
 Route::post('/events/dateFilter', 'App\Http\Controllers\EventController@dateFilter')->name('event.dateFilter');
 
+Route::post('/reviews/save', 'App\Http\Controllers\ReviewController@save')->name("review.save");
+
 Route::middleware('admin')->group(function () {
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name("admin.index");
     Route::post('/admin/deleteEvent', 'App\Http\Controllers\AdminController@deleteEvent')->name("admin.deleteEvent");

@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\Event;
-class EventController extends Controller
+use Illuminate\Support\Facades\Auth;
+
+class ReviewController extends Controller
 {
 
     public function index(): View
@@ -26,9 +29,13 @@ class EventController extends Controller
 
     public function save(Request $request)
     {
-        Event::validate($request);
-        //here will be the code to call the model and save it to the database
-        Event::create($request->only(['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location']));
+        Review::validate($request);
+        // //here will be the code to call the model and save it to the database
+        $newReview = new Review();
+        $newReview->setComment($request->comment);
+        $newReview->setRating($request->rating);
+        $newReview->setProductId($request->product_id);
+        $newReview->save();
         return back();
     }
 
