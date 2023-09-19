@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use app\Models\Review;
+use app\Models\Event;
+use app\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,7 +16,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * PRODUCT ATTRIBUTES
+     * USER ATTRIBUTES
      * $this->attributes['id'] - int - contains the product primary key (id)
      * $this->attributes['name'] - string - contains the username
      * $this->attributes['password'] - string - contains the password of the user
@@ -56,6 +59,36 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function getReview(): Review
+    {
+        return $this->review;
+    }
+
+    public function event()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function getEvent(): Event
+    {
+        return $this->event;
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function getOrder(): Order
+    {
+        return $this->order;
+    }
 
     public function getId(): int
     {
@@ -115,5 +148,25 @@ class User extends Authenticatable
     public function setRole(string $role): void
     {
         $this->attributes['role'] = $role;
+    }
+
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['createdAt'];
+    }
+
+    public function setCreatedAt(string $createAt) : void
+    {
+        $this->attributes['createAt'] = $createAt;
+    }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updatedAt'];
+    }
+
+    public function setUpdatedAt(string $updatedAt) : void
+    {
+        $this->attributes['updatedAt'] = $updatedAt;
     }
 }
