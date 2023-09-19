@@ -69,25 +69,4 @@ class OrderItem extends Model
     {
         $this->attributes['fullValue'] = $fullValue;
     }
-
-    public function getCreatedAt(): string
-    {
-        return $this->attributes['createdAt'];
-    }
-
-    public function setCreatedAt(string $createAt) : void
-    {
-        $this->attributes['createAt'] = $createAt;
-    }
-
-    public function getUpdatedAt(): string
-    {
-        return $this->attributes['updatedAt'];
-    }
-
-    public function setUpdatedAt(string $updatedAt) : void
-    {
-        $this->attributes['updatedAt'] = $updatedAt;
-    }
-
 }
