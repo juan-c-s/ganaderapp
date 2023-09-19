@@ -11,8 +11,8 @@
     <div class="col-md-4 col-lg-3 mb-2">
       <div class="card">
         <div class="card-body text-center">
-          <h2>{{$event->getTitle()}}</h2>
           <img src="{{$event->getImage()}}" class="img-fluid img-thumbnail" alt="event_image">
+          <h2>{{$event->getTitle()}}</h2>
           <p>{{$event->getDescription()}}</p>
           <p>{{$event->getDate()}}</p>
         </div>
