@@ -57,9 +57,10 @@ class ProductController extends Controller
         return back();
     }
     
-    public function delete(Request $request):View{
-        Product::destroy($request->id);
-        return $this->index();
+    public function delete(Request $request):RedirectResponse
+    {
+        Product::deleteById($request);
+        return redirect()->route('product.index');
     }
 }
 
