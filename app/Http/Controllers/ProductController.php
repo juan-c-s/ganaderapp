@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
+use App\Models\Review;
+use Illuminate\Http\RedirectResponse;
+
 class ProductController extends Controller
 {
 
@@ -24,7 +27,9 @@ class ProductController extends Controller
             $product = Product::findOrFail($id);
             $viewData["title"] = $product->getTitle()." - Ganaderapp";
             $viewData["subtitle"] =  $product->getTitle()." - Cow information";
-            $viewData["product"] = $product;
+            $viewData["products"] = $product;
+            $viewData["reviews"] = $product->getReviews();
+
             return view('product.show')->with("viewData", $viewData);
         }else{
             return view('home.index')->with("viewData", $viewData);
@@ -46,7 +51,7 @@ class ProductController extends Controller
         Product::create($request->only(["title","price","image","description","rating","category","supplier"]));
         return back();
     }
-
+    
     public function delete(Request $request):View{
         Product::destroy($request->id);
         return $this->index();

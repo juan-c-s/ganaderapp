@@ -7,6 +7,7 @@ use app\Models\Review;
 use app\Models\Event;
 use app\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -65,9 +66,14 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function getReview(): Review
+    public function getReviews(): Collection
     {
-        return $this->review;
+        return $this->reviews;
+    }
+
+    public function setReviews(Collection $reviews): void
+    {
+        $this->reviews = $reviews;
     }
 
     public function event()
