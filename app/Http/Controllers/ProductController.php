@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
-use App\Models\Review;
+use App\Util\ImageUtil;
 use Illuminate\Http\RedirectResponse;
-
 class ProductController extends Controller
 {
     public function __construct()
@@ -52,8 +51,9 @@ class ProductController extends Controller
     public function save(Request $request)
     {
         Product::validate($request);
-        //here will be the code to call the model and save it to the database
-        Product::create($request->only(["title","price","image","description","rating","category","supplier"]));
+        $data = $request->only(["title","price","description","rating","category","supplier"]);
+        $data['image'] = ImageUtil::img2htmlbase64($request, 'image');
+        Product::create($data);
         return back();
     }
     

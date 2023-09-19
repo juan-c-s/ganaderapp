@@ -8,7 +8,6 @@ use App\Models\Product;
 use App\Models\Event;
 
 use App\Util\ImageUtil;
-//require('./util/ImageConverter')
 class EventController extends Controller
 {
 
@@ -48,20 +47,6 @@ class EventController extends Controller
         return $this->index();
     }
 
-    public function dateFilter(Request $request)
-    {
-        $allEvents = $request->input('events');
-        $filterDate = $request->input('date');
-        if ($filterDate == '') {
-            return response()->json($allEvents);
-        }
-        else {
-            $filtered = array_filter($allEvents, function($objeto) use ($filterDate) {
-                return $objeto['date'] == $filterDate;
-            });
-            return response()->json($filtered);
-        }
-    }
 }
 
 
