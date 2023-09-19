@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->decimal('maxCapacity');
+            $table->bigInteger('maxCapacity');
             $table->string('category');
             $table->date('date');
             $table->string('description');
-            $table->string('image')->nullable();
+            $table->longText('image')->nullable();
             $table->string('location');
             $table->timestamps();
         });
