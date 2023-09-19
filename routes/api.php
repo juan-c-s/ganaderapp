@@ -17,3 +17,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/events/dateFilter', 'App\Http\Controllers\api\EventApiController@dateFilter')->name('event.api.dateFilter');
+Route::post('/products/supplierFilter', 'App\Http\Controllers\api\ProductApiController@supplierFilter')->name('product.api.supplierFilter');
