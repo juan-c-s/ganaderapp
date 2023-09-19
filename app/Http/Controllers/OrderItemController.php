@@ -9,6 +9,11 @@ use App\Models\Product;
 
 class OrderItemController extends Controller
 {
+    public function __construct()
+    {
+        // Assign to ALL methods in this Controller
+        $this->middleware('auth');
+    }
     public function index(Request $request): View
     {
         $products = Product::all();

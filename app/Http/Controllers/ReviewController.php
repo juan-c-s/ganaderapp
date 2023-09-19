@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Auth;
 class ReviewController extends Controller
 {
 
+    public function __construct()
+    {
+        // Assign to ALL methods in this Controller
+        $this->middleware('auth');
+    }
     public function index(): View
     {
         $viewData = [];
