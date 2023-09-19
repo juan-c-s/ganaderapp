@@ -36,8 +36,6 @@ class Event extends Model
 
     public static function validate(Request $request):void{
         $newEvent = new Event();
-        // $newProduct->setCategory(request->category);
-        // $newProduct->save();
         $request->validate([
             'title'=>'required',
             'category'=>'required',

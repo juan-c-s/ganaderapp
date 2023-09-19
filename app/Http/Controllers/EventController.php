@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
 use App\Models\Event;
+
+use App\Util\ImageUtil;
+//require('./util/ImageConverter')
 class EventController extends Controller
 {
 
@@ -21,15 +24,16 @@ class EventController extends Controller
     public function create(): View
     {
         $viewData = []; //to be sent to the view
-        $viewData["title"] = "Add Cow";
+        $viewData["title"] = "Add Event";
         return view('event.create')->with("viewData",$viewData);
     }
 
     public function save(Request $request)
     {
         Event::validate($request);
-        //here will be the code to call the model and save it to the database
-        Event::create($request->only(['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location']));
+        $data = $request->only(['title', 'category', 'maxCapacity', 'date', 'description', 'location']);
+        $data['image'] = ImageUtil::img2htmlbase64($request, 'image');
+        Event::create($data);
         return back();
     }
 
