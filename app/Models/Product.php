@@ -23,9 +23,30 @@ class Product extends Model
      * $this->attributes['category'] - int - contains the product price
      * $this->attributes['supplier'] - int - contains the product price
      * ***#*** Agregar created_at y updated_at
-    */ 
-
+     */ 
+    
     protected $fillable = ['title','price','image','description','rating','category','supplier'];
+    
+    public static function validate(Request $request):void
+    {
+        $request->validate([
+            "title" => "required",
+            "price" => "required|numeric|gt:0",
+            "image" => "required",
+            "description" => "required",
+            "rating" => "required|numeric|gt:0",
+            "category" => "required",
+            "supplier" => "required",
+        ]);
+    }
+    public static function deleteById(Request $request):void
+    {
+        $product = Product::findOrFail($request->id);
+        $product->reviews()->delete();
+        $product->delete();
+    }
+
+
 
     public function orderItems()
     {
@@ -45,18 +66,6 @@ class Product extends Model
     public function getReviews():Collection
     {
         return $this->reviews;
-    }
-
-    public static function validate(Request $request):void{
-        $request->validate([
-            "title" => "required",
-            "price" => "required|numeric|gt:0",
-            "image" => "required",
-            "description" => "required",
-            "rating" => "required|numeric|gt:0",
-            "category" => "required",
-            "supplier" => "required",
-        ]);
     }
 
     public function getId(): int
@@ -138,4 +147,5 @@ class Product extends Model
     {
         $this->attributes['rating'] = $rating;
     }
+
 }
