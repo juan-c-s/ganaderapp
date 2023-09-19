@@ -21,9 +21,12 @@ Route::post('/products/save', 'App\Http\Controllers\ProductController@save')->na
 Route::post('/products/delete', 'App\Http\Controllers\ProductController@delete')->name("product.delete");
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name("product.show");
 
-Route::get('/cart', 'App\Http\Controllers\OrderItemController@index')->name("cart.index");
-Route::get('/cart/add/{id}', 'App\Http\Controllers\OrderItemController@add')->name("cart.add");
-Route::get('/cart/removeAll/', 'App\Http\Controllers\OrderItemController@removeAll')->name("cart.removeAll");
+Route::get('/cart', 'App\Http\Controllers\OrderItemController@index')->name('cart.index');
+Route::post('/cart/add', 'App\Http\Controllers\OrderItemController@add')->name('cart.add');
+Route::post('/cart/update', 'App\Http\Controllers\OrderItemController@update')->name('cart.update');
+Route::post('/cart/remove', 'App\Http\Controllers\OrderItemController@remove')->name('cart.remove');
+Route::post('/cart/clear', 'App\Http\Controllers\OrderItemController@clear')->name('cart.clear');
+
 
 Route::get('/image', 'App\Http\Controllers\ImageController@index')->name("image.index");
 Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name("image.save");

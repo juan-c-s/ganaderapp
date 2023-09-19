@@ -19,9 +19,6 @@
            price :  {{ $viewData["product"]->getPrice()}}
           </h5>
           <h5 class="card-title">
-           Seller's rating :  {{ $viewData["product"]->getRating()}}
-          </h5>
-          <h5 class="card-title">
            Breed :  {{ $viewData["product"]->getCategory() }}
           </h5>
           <h5 class="card-title">
@@ -31,12 +28,11 @@
             Image: <img  src={{$viewData["product"]->getImage()}}>
         </h5>
         <form method="POST" action="{{ route('product.delete') }}">
-        @csrf
-        <input type="hidden" name="id" value="{{$viewData["product"]->getId()}}" />
-        <input type="submit" class="btn btn-primary" value="delete" />
+          @csrf
+          <input type="hidden" name="id" value="{{$viewData["product"]->getId()}}" />
+          <input type="submit" class="btn btn-primary" value="delete" />
         </form>
-
-  </div>
+      </div>
     </div>
   </div>
 </div>
