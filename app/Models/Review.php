@@ -7,7 +7,7 @@ use app\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Review extends Model
 {
@@ -25,9 +25,9 @@ class Review extends Model
 
     protected $fillable = ['comment','rating'];
 
-    public function product()
+    public function product(): BelongsTo
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function getProduct(): Product
@@ -48,7 +48,8 @@ class Review extends Model
     public static function validate(Request $request):void{
         $request->validate([
             "comment" => "required",
-            "rating" => "required",
+            "rating" => "required|numeric|gt:0|lte:5",
+            "product_id" => "required|exists:products,id",
         ]);
     }
 
@@ -61,6 +62,17 @@ class Review extends Model
     {
         $this->attributes['id'] = $id;
     }
+
+    public function getProductId(): int
+    {
+        return $this->attributes['product_id'];
+    }
+
+    public function setProductId(int $productId): void
+    {
+        $this->attributes['product_id'] = $productId;
+    }
+
 
     public function getComment(): string
     {
@@ -80,26 +92,6 @@ class Review extends Model
     public function setRating(string $rating ) : void
     {
         $this->attributes['rating'] = $rating;
-    }
-
-    public function getCreatedAt(): string
-    {
-        return $this->attributes['createdAt'];
-    }
-
-    public function setCreatedAt(string $createAt) : void
-    {
-        $this->attributes['createAt'] = $createAt;
-    }
-
-    public function getUpdatedAt(): string
-    {
-        return $this->attributes['updatedAt'];
-    }
-
-    public function setUpdatedAt(string $updatedAt) : void
-    {
-        $this->attributes['updatedAt'] = $updatedAt;
     }
 
 }

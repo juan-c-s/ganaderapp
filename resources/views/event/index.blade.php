@@ -11,6 +11,7 @@
     <div class="col-md-4 col-lg-3 mb-2">
       <div class="card">
         <div class="card-body text-center">
+          <img src="{{$event->getImage()}}" class="img-fluid img-thumbnail" alt="event_image">
           <h2>{{$event->getTitle()}}</h2>
           <p>{{$event->getDescription()}}</p>
           <p>{{$event->getDate()}}</p>
@@ -20,4 +21,5 @@
   @endforeach
 </div>
 <div id="csrf-token" data-token="{{ csrf_token() }}"></div>
+<div id="events" style="display: none;">'@json($viewData["events"])'</div>
 @endsection

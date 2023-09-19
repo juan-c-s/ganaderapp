@@ -23,11 +23,19 @@ class Event extends Model
      */
 
     protected $fillable = ['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location'];
-    
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
     public static function validate(Request $request):void{
         $newEvent = new Event();
-        // $newProduct->setCategory(request->category);
-        // $newProduct->save();
         $request->validate([
             'title'=>'required',
             'category'=>'required',

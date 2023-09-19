@@ -30,64 +30,38 @@
         <div class="row justify-content-center">
             <div class="col-lg-7">
                 <br>
-                @if(\Cart::getTotalQuantity()>0)
-                    <h4>{{ \Cart::getTotalQuantity()}} Producto(s) en el carrito</h4><br>
-                @else
-                    <h4>No Product(s) In Your Cart</h4><br>
-                    <a href="/" class="btn btn-dark">Continuar en la tienda</a>
-                @endif
-
-                @foreach($cartCollection as $item)
+                @foreach($viewData["cartProducts"] as $key => $product)
                     <div class="row">
                         <div class="col-lg-3">
-                            <img src="/images/{{ $item->attributes->image }}" class="img-thumbnail" width="200" height="200">
+                            <img src="{{ $product->getImage() }}" class="img-thumbnail" width="200" height="200">
                         </div>
                         <div class="col-lg-5">
                             <p>
-                                <b>{{ $item->name }}</b><br>
-                                <b>Price: </b>${{ $item->Price }}<br>
-                                <b>Sub Total: </b>${{ \Cart::get($item->id)->getPriceSum() }}<br>
+                                <b>{{ $product->getTitle() }}</b><br>
+                                <b>Price: </b>${{ $product->getPrice() }}<br>
                             </p>
                         </div>
                         <div class="col-lg-4">
                             <div class="row">
-                                <form action="{{ route('cart.update') }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <div class="form-group row">
-                                        <input type="hidden" value="{{ $item->id}}" id="id" name="id">
-                                        <input type="number" class="form-control form-control-sm" value="{{ $item->quantity }}"
-                                               id="quantity" name="quantity" style="width: 70px; margin-right: 10px;">
-                                        <button class="btn btn-secondary btn-sm" style="margin-right: 25px;"><i class="fa fa-edit"></i></button>
-                                    </div>
-                                </form>
-                                <form action="{{ route('cart.remove') }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" value="{{ $item->id }}" id="id" name="id">
-                                    <button class="btn btn-dark btn-sm" style="margin-right: 10px;"><i class="fa fa-trash"></i></button>
-                                </form>
+                                <a href="{{ route('cart.remove',['id'=>$key]) }}" 
+                                    class="btn btn-dark btn-sm" style="margin-right: 10px;"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>
                     <hr>
                 @endforeach
-                @if(count($cartCollection)>0)
-                    <form action="{{ route('cart.clear') }}" method="POST">
-                        {{ csrf_field() }}
-                        <button class="btn btn-secondary btn-md">Borrar Carrito</button> 
-                    </form>
-                @endif
+                    <a href="{{ route('cart.clear') }}"
+                       class="btn bg-primary text-white">Delete Cart</a>
             </div>
-            @if(count($cartCollection)>0)
                 <div class="col-lg-5">
                     <div class="card">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Total: </b>${{ \Cart::getTotal() }}</li>
+                            <li class="list-group-item"><b>Total: </b>${{ $viewData["totalCarrito"] }}</li>
                         </ul>
                     </div>
-                    <br><a href="{{ route('product.index') }}" class="btn btn-dark">Continue en la tienda</a>
-                    <a href="/" class="btn btn-success">Proceder al Checkout</a>
+                    <br><a href="{{ route('product.index') }}" class="btn btn-dark">Continue shopping</a>
+                    <a href="/" class="btn btn-success">Procedure the checkout</a>
                 </div>
-            @endif
         </div>
         <br><br>
     </div>

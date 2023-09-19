@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
 use App\Models\Event;
+
+use App\Util\ImageUtil;
 class EventController extends Controller
 {
 
+    public function __construct()
+    {
+        // Assign to ALL methods in this Controller
+        $this->middleware('auth');
+    }
     public function index(): View
     {
         $viewData = [];
@@ -21,15 +28,16 @@ class EventController extends Controller
     public function create(): View
     {
         $viewData = []; //to be sent to the view
-        $viewData["title"] = "Add Cow";
+        $viewData["title"] = "Add Event";
         return view('event.create')->with("viewData",$viewData);
     }
 
     public function save(Request $request)
     {
         Event::validate($request);
-        //here will be the code to call the model and save it to the database
-        Event::create($request->only(['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location']));
+        $data = $request->only(['title', 'category', 'maxCapacity', 'date', 'description', 'location']);
+        $data['image'] = ImageUtil::img2htmlbase64($request, 'image');
+        Event::create($data);
         return back();
     }
 
@@ -39,17 +47,6 @@ class EventController extends Controller
         return $this->index();
     }
 
-    public function dateFilter(Request $request)
-    {
-        if ($request->input('date') == '') {
-            return response()->json(Event::all());
-        }
-        else {
-            $filtro = $request->input('date');
-            $resultados = Event::where('date', $filtro)->get();
-            return response()->json($resultados);
-        }
-    }
 }
 
 

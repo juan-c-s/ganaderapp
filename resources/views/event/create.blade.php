@@ -15,15 +15,15 @@
             </ul>
             @endif
 
-            <form method="POST" action="{{ route('event.save') }}">
+            <form method="POST" action="{{ route('event.save') }}" enctype="multipart/form-data">
               @csrf
               <input type="text" class="form-control mb-2" placeholder="Enter title" name="title" value="{{ old('title') }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ old('description') }}" />
               <input type="date" class="form-control mb-2" placeholder="Enter date" name="date" value="{{ old('date') }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter category" name="category" value="{{ old('category') }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter location" name="location" value="{{ old('location') }}" />
-              <input type="text" class="form-control mb-2" placeholder="Enter image url" name="image" value="{{ old('image') }}" />
               <input type="number" class="form-control mb-2" placeholder="Enter Max Capacity" name="maxCapacity" value="{{ old('maxCapacity') }}" />
+              <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control mb-2" placeholder="Choose an image" name="image" value="{{ old('image') }}" />
               <input type="submit" class="btn btn-primary" value="Send" />
             </form>
           </div>

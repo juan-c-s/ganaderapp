@@ -9,45 +9,66 @@ use App\Models\Product;
 
 class OrderItemController extends Controller
 {
-    public function index()  {
-        $cartCollection = \Cart::getContent();
-        //dd($cartCollection);
-        return view('cart.index')->with(['cartCollection' => $cartCollection]);;
-    }
-    public function remove(Request $request){
-        \Cart::remove($request->id);
-        return redirect()->route('cart.index')->with('success_msg', 'Item is removed!');
+
+    public function __construct()
+    {
+        // Assign to ALL methods in this Controller
+        $this->middleware('auth');
     }
 
-    public function add(Request $request){
-        \Cart::add(array(
-            'name' => $request->title,
-            'id' => $request->id,
-            'price' => $request->price,
-            'image' => $request->image,
-            'description' => $request->description,
-            'rating' => $request->rating,
-            'category' => $request->category,
-            'quantity' => $request->quantity,
-            'supplier' => $request->supplier
-        ));
+    public function index(Request $request)  {
+
+        $products = Product::all();
+        $cartProducts = [];
+        $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
+        if ($cartProductData) {
+            foreach ($products as $key => $product) {
+                if (in_array($key, array_keys($cartProductData))) {
+                    $cartProducts[$key] = $product;
+                }
+            }
+        }
+        $total = 0;
+        foreach ($cartProducts as $key => $product) {
+                $total += $product->getPrice();
+        }
+
+        $viewData = [];
+        $viewData['products'] = $products;
+        $viewData['cartProducts'] = $cartProducts;
+        $viewData['totalCarrito'] = $total;
+        return view('cart.index')->with('viewData', $viewData);
+    }
+
+    public function remove(string $id, Request $request)
+    {
+        $cartProductData = $request->session()->get('cart_product_data');
+
+        if (isset($cartProductData[$id])) {
+
+            unset($cartProductData[$id]);
+            $request->session()->put('cart_product_data', $cartProductData);
+
+            return back()->with('success_msg', 'Item eliminado del carrito.');
+        }
+
+        return back()->with('error_msg', 'El item no existe en el carrito.');
+    }
+
+
+    public function add(string $id, Request $request)
+    {
+
+        $cartProductData = $request->session()->get('cart_product_data');
+        $cartProductData[$id] = $id;
+        $request->session()->put('cart_product_data', $cartProductData);
+
         return back()->with('success_msg', 'Item Agregado a sú Carrito!');
     }
 
-    public function update(Request $request){
-        \Cart::update($request->id,
-            array(
-                'quantity' => array(
-                    'relative' => false,
-                    'value' => $request->quantity
-                ),
-        ));
-        return redirect()->route('cart.index')->with('success_msg', 'Cart is Updated!');
-    }
-
-    public function clear(){
-        \Cart::clear();
-        return redirect()->route('cart.index')->with('success_msg', 'Car is cleared!');
+    public function clear(Request $request){
+        $request->session()->forget('cart_product_data');
+        return back();
     }
 
 }

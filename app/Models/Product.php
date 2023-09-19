@@ -7,7 +7,7 @@ use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-
+use Illuminate\Database\Eloquent\Collection;
 
 class Product extends Model
 {
@@ -23,34 +23,12 @@ class Product extends Model
      * $this->attributes['category'] - int - contains the product price
      * $this->attributes['supplier'] - int - contains the product price
      * ***#*** Agregar created_at y updated_at
-    */ 
-
+     */ 
+    
     protected $fillable = ['title','price','image','description','rating','category','supplier'];
-
-    public function orderItem()
+    
+    public static function validate(Request $request):void
     {
-        return $this->hasMany(OrderItem::class);
-    }
-
-    public function getOrderItem(): OrderItem
-    {
-        return $this->product;
-    }
-
-    public function review()
-    {
-        return $this->hasMany(Review::class);
-    }
-
-    public function getReview(): Review
-    {
-        return $this->review;
-    }
-
-    public static function validate(Request $request):void{
-        $newProduct = new Product();
-        // $newProduct->setCategory(request->category);
-        // $newProduct->save();
         $request->validate([
             "title" => "required",
             "price" => "required|numeric|gt:0",
@@ -59,8 +37,35 @@ class Product extends Model
             "rating" => "required|numeric|gt:0",
             "category" => "required",
             "supplier" => "required",
-
         ]);
+    }
+    public static function deleteById(Request $request):void
+    {
+        $product = Product::findOrFail($request->id);
+        $product->reviews()->delete();
+        $product->delete();
+    }
+
+
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function getOrderItems(): OrderItem
+    {
+        return $this->product;
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function getReviews():Collection
+    {
+        return $this->reviews;
     }
 
     public function getId(): int
@@ -132,4 +137,15 @@ class Product extends Model
     {
         $this->attributes['description'] = $description;
     }
+
+    public function getRating(): string
+    {
+        return $this->attributes['rating'];
+    }
+
+    public function setRating(string $rating) : void
+    {
+        $this->attributes['rating'] = $rating;
+    }
+
 }

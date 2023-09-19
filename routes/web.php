@@ -22,10 +22,9 @@ Route::post('/products/delete', 'App\Http\Controllers\ProductController@delete')
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name("product.show");
 
 Route::get('/cart', 'App\Http\Controllers\OrderItemController@index')->name('cart.index');
-Route::post('/cart/add', 'App\Http\Controllers\OrderItemController@add')->name('cart.add');
-Route::post('/cart/update', 'App\Http\Controllers\OrderItemController@update')->name('cart.update');
-Route::post('/cart/remove', 'App\Http\Controllers\OrderItemController@remove')->name('cart.remove');
-Route::post('/cart/clear', 'App\Http\Controllers\OrderItemController@clear')->name('cart.clear');
+Route::get('/cart/add/{id}', 'App\Http\Controllers\OrderItemController@add')->name('cart.add');
+Route::get('/cart/remove/{id}', 'App\Http\Controllers\OrderItemController@remove')->name('cart.remove');
+Route::get('/cart/clear', 'App\Http\Controllers\OrderItemController@clear')->name('cart.clear');
 
 
 Route::get('/image', 'App\Http\Controllers\ImageController@index')->name("image.index");
@@ -34,7 +33,8 @@ Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name("i
 Route::get('/events', 'App\Http\Controllers\EventController@index')->name("event.index");
 Route::get('/events/create', 'App\Http\Controllers\EventController@create')->name("event.create");
 Route::post('/events/save', 'App\Http\Controllers\EventController@save')->name("event.save");
-Route::post('/events/dateFilter', 'App\Http\Controllers\EventController@dateFilter')->name('event.dateFilter');
+
+Route::post('/reviews/save', 'App\Http\Controllers\ReviewController@save')->name("review.save");
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name("admin.index");

@@ -5,8 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
+use App\Util\ImageUtil;
+use Illuminate\Http\RedirectResponse;
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        // Assign to ALL methods in this Controller
+        $this->middleware('auth');
+    }
 
     public function index(): View
     {
@@ -24,7 +31,9 @@ class ProductController extends Controller
             $product = Product::findOrFail($id);
             $viewData["title"] = $product->getTitle()." - Ganaderapp";
             $viewData["subtitle"] =  $product->getTitle()." - Cow information";
-            $viewData["product"] = $product;
+            $viewData["products"] = $product;
+            $viewData["reviews"] = $product->getReviews();
+
             return view('product.show')->with("viewData", $viewData);
         }else{
             return view('home.index')->with("viewData", $viewData);
@@ -42,14 +51,16 @@ class ProductController extends Controller
     public function save(Request $request)
     {
         Product::validate($request);
-        //here will be the code to call the model and save it to the database
-        Product::create($request->only(["title","price","image","description","rating","category","supplier"]));
+        $data = $request->only(["title","price","description","rating","category","supplier"]);
+        $data['image'] = ImageUtil::img2htmlbase64($request, 'image');
+        Product::create($data);
         return back();
     }
-
-    public function delete(Request $request):View{
-        Product::destroy($request->id);
-        return $this->index();
+    
+    public function delete(Request $request):RedirectResponse
+    {
+        Product::deleteById($request);
+        return redirect()->route('product.index');
     }
 }
 
