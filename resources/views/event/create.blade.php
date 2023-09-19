@@ -24,6 +24,7 @@
               <input type="text" class="form-control mb-2" placeholder="Enter location" name="location" value="{{ old('location') }}" />
               <input type="number" class="form-control mb-2" placeholder="Enter Max Capacity" name="maxCapacity" value="{{ old('maxCapacity') }}" />
               <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control mb-2" placeholder="Choose an image" name="image" value="{{ old('image') }}" />
+              <input type="hidden" name="user_id" value="{{Auth::user()->getId()}}" />
               <input type="submit" class="btn btn-primary" value="Send" />
             </form>
           </div>

@@ -16,7 +16,7 @@ class OrderItemController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)  {
+    public function index(Request $request): view  {
 
         $products = Product::all();
         $cartProducts = [];
@@ -56,7 +56,7 @@ class OrderItemController extends Controller
     }
 
 
-    public function add(string $id, Request $request)
+    public function add(Request $request, string $id): RedirectResponse
     {
 
         $cartProductData = $request->session()->get('cart_product_data');
@@ -66,7 +66,8 @@ class OrderItemController extends Controller
         return back()->with('success_msg', 'Item Agregado a sú Carrito!');
     }
 
-    public function clear(Request $request){
+    public function clear(Request $request)
+    {
         $request->session()->forget('cart_product_data');
         return back();
     }

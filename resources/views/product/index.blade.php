@@ -3,28 +3,20 @@
 @section('subtitle', 'Product List')
 @section('content')
 <div class="row">
-  <div class="col-lg-7">
-    <h4>Productos</h4>
-  </div>
-</div>
-<hr>
-<div class="row">
-  @foreach($viewData["products"] as $key => $product)
-    <div class="col-lg-3">
-      <div class="card" style="margin-bottom: 20px; height: auto;">
-        <img src="{{ $product->getImage() }}" alt="">
-        <div class="card-body">
-          <h6 class="card-title">{{ $product->getTitle() }}</h6>
-          <p>${{ $product->getPrice() }}</p>
+  @foreach ($viewData["products"]  as $key => $product)
+    <div class="col-md-4 col-lg-3 mb-2">
+      <div class="card">
+        <img src="{{$product->getImage()}}" class="card-img-top img-card">
+        <div class="card-body text-center">
           <a href="{{ route('product.show', ['id'=> $product->getId()]) }}"
-            class="btn bg-primary text-white">{{ $product->getTitle() }}</a> <br><br>
-            
-          <a href="{{ route('cart.add',['id'=>$key]) }}" 
-            class = "btn bg-primary text-white">Añadir al carrito</a>
-          </div>
-        </form>
+            class="btn bg-primary text-white">{{ $product->getTitle() }}</a>
+            <br><br>
+          <a href="{{ route('cart.add', ['id' => $key]) }}"
+            class="btn bg-primary text-white">agregar a carrito</a>
+        </div>
       </div>
     </div>
   @endforeach
 </div>
+<div id="products" style="display: none;">'@json($viewData["products"])'</div>
 @endsection

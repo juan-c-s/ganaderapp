@@ -29,6 +29,7 @@
         @endif
         <div class="row justify-content-center">
             <div class="col-lg-7">
+            
                 <br>
                 @foreach($viewData["cartProducts"] as $key => $product)
                     <div class="row">

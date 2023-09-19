@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\OrderItem;
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -37,8 +38,36 @@ class Product extends Model
             "rating" => "required|numeric|gt:0",
             "category" => "required",
             "supplier" => "required",
+            "user_id" => "required|exists:users,id",
         ]);
     }
+
+    public static function createProduct(Request $request):void
+    {
+        $newProduct = new Product();
+        $newProduct->setTitle($request->title);
+        $newProduct->setPrice($request->price);
+        $newProduct->setImage($request->image);
+        $newProduct->setDescription($request->description);
+        $newProduct->setRating($request->rating);
+        $newProduct->setCategory($request->category);
+        $newProduct->setSupplier($request->supplier);
+        $newProduct->setUserId($request->user_id);
+        $newProduct->save();
+    }
+
+    public static function updateProduct(Request $request):void
+    {
+        $product = Product::find($request->id);
+        $product->setTitle($request->title);
+        $product->setPrice($request->price);
+        $product->setDescription($request->description);
+        $product->setRating($request->rating);
+        $product->setCategory($request->category);
+        $product->setSupplier($request->supplier);
+        $product->save();
+    }
+
     public static function deleteById(Request $request):void
     {
         $product = Product::findOrFail($request->id);
@@ -46,7 +75,29 @@ class Product extends Model
         $product->delete();
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
+    public function getUser(){
+        return $this->user;
+    }
+
+    public function setUser(int $user):void
+    {
+        $this->user = $user;
+    }
+    
+    public function getUserId():int
+    {
+        return $this->attributes['user_id'];
+    }
+
+    public function setUserId(int $userId):void
+    {
+        $this->attributes['user_id'] = $userId;
+    }
 
     public function orderItems()
     {
@@ -88,12 +139,12 @@ class Product extends Model
         $this->attributes['title'] = $title;
     }
 
-    public function getImage(): string
+    public function getImage()
     {
         return $this->attributes['image'];
     }
 
-    public function setImage(string $image) : void
+    public function setImage($image) : void
     {
         $this->attributes['image'] = $image;
     }

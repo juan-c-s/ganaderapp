@@ -2,7 +2,7 @@
 @section('title', $viewData["title"])
 @section('subtitle', $viewData["subtitle"])
 @section('content')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script src="{{asset('js/event/filterByDate.js')}}"></script>
 <label for="date">Filter by date:</label>
 <input type="date" id="date">
@@ -20,6 +20,5 @@
     </div>
   @endforeach
 </div>
-<div id="csrf-token" data-token="{{ csrf_token() }}"></div>
 <div id="events" style="display: none;">'@json($viewData["events"])'</div>
 @endsection

@@ -35,10 +35,9 @@ class EventController extends Controller
     public function save(Request $request)
     {
         Event::validate($request);
-        $data = $request->only(['title', 'category', 'maxCapacity', 'date', 'description', 'location']);
-        $data['image'] = ImageUtil::img2htmlbase64($request, 'image');
-        Event::create($data);
-        return back();
+        $request->image = ImageUtil::img2htmlbase64($request, 'image');
+        Event::createEvent($request);
+        return redirect()->route('event.index');
     }
 
     public function delete(Request $request): View
