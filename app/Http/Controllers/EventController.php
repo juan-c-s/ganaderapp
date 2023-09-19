@@ -12,8 +12,8 @@ class EventController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData["title"] = "Cows - Ganaderapp";
-        $viewData["subtitle"] =  "List of Cows";
+        $viewData["title"] = "Events - Ganaderapp";
+        $viewData["subtitle"] =  "List of events";
         $viewData["events"] = Event::all();
         return view('event.index')->with("viewData", $viewData);
     }
@@ -22,7 +22,6 @@ class EventController extends Controller
     {
         $viewData = []; //to be sent to the view
         $viewData["title"] = "Add Cow";
-
         return view('event.create')->with("viewData",$viewData);
     }
 
@@ -34,9 +33,25 @@ class EventController extends Controller
         return back();
     }
 
-    public function delete(Request $request):View{
+    public function delete(Request $request): View
+    {
         Product::destroy($request->id);
         return $this->index();
+    }
+
+    public function dateFilter(Request $request)
+    {
+        $allEvents = $request->input('events');
+        $filterDate = $request->input('date');
+        if ($filterDate == '') {
+            return response()->json($allEvents);
+        }
+        else {
+            $filtered = array_filter($allEvents, function($objeto) use ($filterDate) {
+                return $objeto['date'] == $filterDate;
+            });
+            return response()->json($filtered);
+        }
     }
 }
 

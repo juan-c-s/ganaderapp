@@ -46,7 +46,6 @@ class Event extends Model
             'description'=>'required',
             'image'=>'required',
             'location'=>'required',
-            
         ]);
     }
 
