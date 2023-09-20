@@ -24,6 +24,7 @@
               <input type="text" class="form-control mb-2" placeholder="Enter Breed" name="category" value="{{ $viewData["product"]->getCategory() }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter Supplier" name="supplier" value="{{ $viewData["product"]->getSupplier() }}" />
               <input type="hidden" name="id" value="{{$viewData["product"]->getId()}}" />
+              <input type="hidden" name="user_id" value="{{$viewData["product"]->getUserId()}}" />
               <input type="submit" class="btn btn-primary" value="Update" />
             </form>
           </div>
