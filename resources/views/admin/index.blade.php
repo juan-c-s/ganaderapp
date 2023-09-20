@@ -1,3 +1,4 @@
+<!-- {/*JUANCAMILO*/} -->
 @extends('layouts.app')
 
 @section('content')

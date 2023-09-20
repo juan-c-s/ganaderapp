@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * JUANCAMILO
+ * */
 namespace App\Http\Middleware;
 
 use Closure;

@@ -1,7 +1,7 @@
 <?php
  
 namespace App\Http\Controllers;
-
+//<!-- {/*JUANCAMILO*/} -->
 use Illuminate\View\View;
  
 class HomeController extends Controller
