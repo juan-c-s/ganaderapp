@@ -33,7 +33,7 @@
         @if ((Auth::user() && Auth::user()->getRole() == 'admin') || (Auth::user()->getId() == $viewData["products"]->getUserId())) 
           <form class="m-2" method="GET" action="{{ route('product.update', ['id'=> $viewData["products"]->getId()]) }}">
           @csrf
-          <input type="hidden" name="id" value="{{$viewData["products"]->getId()}}" />
+         <input type="hidden" name="id" value="{{$viewData["products"]->getId()}}" />
           <input type="hidden" name="user_id" value="{{$viewData["products"]->getUserId()}}" />
           <input type="submit" class="btn btn-dark" value="Update Product" />
           </form>
@@ -44,7 +44,6 @@
           <input type="hidden" name="user_id" value="{{$viewData["products"]->getUserId()}}" />
           <input type="submit" class="btn btn-dark" value="Delete Product" />
           </form>
-
         @endif
 
         @if(count($viewData["reviews"])>0)
@@ -82,6 +81,7 @@
             <input type="hidden" name="product_id" value="{{$viewData["products"]->getId()}}" />
             <input type="submit" class="btn btn-dark" value="comment"/>
         </form>
+
   </div>
     </div>
   </div>
