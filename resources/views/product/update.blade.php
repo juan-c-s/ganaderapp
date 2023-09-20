@@ -23,7 +23,6 @@
               <input type="text" class="form-control mb-2" placeholder="Enter rating" name="rating" value="{{ $viewData["product"]->getRating() }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter Breed" name="category" value="{{ $viewData["product"]->getCategory() }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter Supplier" name="supplier" value="{{ $viewData["product"]->getSupplier() }}" />
-              <input type="text" class="form-control mb-2" placeholder="Enter image url" name="image" value="{{ $viewData["product"]->getImage() }}" />
               <input type="hidden" name="id" value="{{$viewData["product"]->getId()}}" />
               <input type="submit" class="btn btn-primary" value="Update" />
             </form>
