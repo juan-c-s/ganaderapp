@@ -1,12 +1,8 @@
 <?php
 
 namespace App\Models;
-<<<<<<< HEAD
 // SIMON
-=======
-
-//<!-- {/*SIMON*/} -->
->>>>>>> 5237167 (Issue and pint)
+// DONOVAN
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use app\Models\User;
@@ -67,20 +63,6 @@ class Event extends Model
         ]);
     }
 
-<<<<<<< HEAD
-    public static function createEvent(Request $request):void
-    {
-        $newProduct = new Event();
-        $newProduct->setTitle($request->title);
-        $newProduct->setCategory($request->category);
-        $newProduct->setMaxCapacity($request->maxCapacity);
-        $newProduct->setDate($request->date);
-        $newProduct->setDescription($request->description);
-        $newProduct->setImage($request->image);
-        $newProduct->setLocation($request->location);
-        $newProduct->setUserId($request->user_id);
-        $newProduct->save();
-=======
     public static function createEvent(Request $request): void
     {
         $newEvent = new Event();
@@ -93,7 +75,6 @@ class Event extends Model
         $newEvent->setLocation($request->location);
         $newEvent->setUserId($request->user_id);
         $newEvent->save();
->>>>>>> 5237167 (Issue and pint)
     }
 
     public function getId(): int
