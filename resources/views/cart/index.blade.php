@@ -6,7 +6,7 @@
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session()->get('success_msg') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">x</span>
+                    <span aria-hidden="true">×</span>
                 </button>
             </div>
         @endif
@@ -58,7 +58,7 @@
                 <div class="col-lg-5">
                     <div class="card">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Total: </b>${{ $viewData["totalCarrito"] }}</li>
+                            <li class="list-group-item"><b>Total: </b>${{ $viewData["totalCart"] }}</li>
                         </ul>
                     </div>
                     <br><a href="{{ route('product.index') }}" class="btn btn-dark">Continue shopping</a>

@@ -14,7 +14,7 @@
             class="btn bg-primary text-white">{{ $product->getTitle() }}</a>
             <br><br>
           <a href="{{ route('cart.add', ['id' => $key]) }}"
-            class="btn bg-primary text-white">agregar a carrito</a>
+            class="btn bg-primary text-white">add to cart</a>
         </div>
       </div>
     </div>

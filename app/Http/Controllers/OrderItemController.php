@@ -37,7 +37,7 @@ class OrderItemController extends Controller
         $viewData = [];
         $viewData['products'] = $products;
         $viewData['cartProducts'] = $cartProducts;
-        $viewData['totalCarrito'] = $total;
+        $viewData['totalCart'] = $total;
         return view('cart.index')->with('viewData', $viewData);
     }
 
@@ -50,10 +50,10 @@ class OrderItemController extends Controller
             unset($cartProductData[$id]);
             $request->session()->put('cart_product_data', $cartProductData);
 
-            return back()->with('success_msg', 'Item eliminado del carrito.');
+            return back()->with('success_msg', 'Product deleted from cart.');
         }
 
-        return back()->with('error_msg', 'El item no existe en el carrito.');
+        return back()->with('error_msg', 'The product does not exit on the cart.');
     }
 
 
@@ -64,7 +64,7 @@ class OrderItemController extends Controller
         $cartProductData[$id] = $id;
         $request->session()->put('cart_product_data', $cartProductData);
 
-        return back()->with('success_msg', 'Item Agregado a sú Carrito!');
+        return back()->with('success_msg', 'Product added at the cart');
     }
 
     public function clear(Request $request)
