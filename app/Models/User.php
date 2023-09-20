@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models;
-//<!-- {/*JUANCAMILO*/} -->
-//<!-- {/*SIMON*/} -->
+// JUANCAMILO
+// SIMON
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use app\Models\Review;
 use app\Models\Event;

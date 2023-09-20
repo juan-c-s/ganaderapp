@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-//<!-- {/*JUANCAMILO*/} -->
+// JUANCAMILO
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;

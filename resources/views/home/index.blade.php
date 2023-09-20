@@ -1,4 +1,4 @@
-<!-- {/*JUANCAMILO*/} -->
+{{-- JUANCAMILO --}}
 @extends('layouts.app')
 @section('title', 'Home Page - Online Store')
 @section('content')
