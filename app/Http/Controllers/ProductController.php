@@ -76,7 +76,7 @@ class ProductController extends Controller
         Product::validate($request);
         $request->image = ImageUtil::img2htmlbase64($request, 'image');
         Product::createProduct($request);
-        redirect()->route('product.index');
+        return redirect()->route('product.index');
     }
 
     public function delete(Request $request):RedirectResponse

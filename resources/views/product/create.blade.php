@@ -25,9 +25,8 @@
               <input type="text" class="form-control mb-2" placeholder="Enter Breed" name="category" value="{{ old('category') }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter Supplier" name="supplier" value="{{ old('supplier') }}" />
               <input type="hidden" name="user_id" value="{{Auth::user()->getId()}}" />
-              <input type="submit" class="btn btn-primary" value="Create" />
               <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control mb-2" placeholder="Choose an image" name="image" value="{{ old('image') }}" />
-              <input type="submit" class="btn btn-primary" value="Send" />
+              <input type="submit" class="btn btn-primary" value="Create" />
             </form>
           </div>
         </div>

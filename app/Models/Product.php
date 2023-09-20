@@ -61,7 +61,6 @@ class Product extends Model
         $product = Product::find($request->id);
         $product->setTitle($request->title);
         $product->setPrice($request->price);
-        $product->setImage($request->image);
         $product->setDescription($request->description);
         $product->setRating($request->rating);
         $product->setCategory($request->category);
@@ -140,12 +139,12 @@ class Product extends Model
         $this->attributes['title'] = $title;
     }
 
-    public function getImage(): string
+    public function getImage()
     {
         return $this->attributes['image'];
     }
 
-    public function setImage(string $image) : void
+    public function setImage($image) : void
     {
         $this->attributes['image'] = $image;
     }
