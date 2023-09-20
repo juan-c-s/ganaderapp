@@ -2,6 +2,7 @@
 
 namespace App\Models;
 //<!-- {/*JUANCAMILO*/} -->
+//<!-- {/*SIMON*/} -->
 use app\Models\Product;
 use app\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

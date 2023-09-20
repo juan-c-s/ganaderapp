@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+//<!-- {/*SIMON*/} -->
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use app\Models\User;

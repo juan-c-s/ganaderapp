@@ -1,4 +1,5 @@
 <!-- {/*JUANCAMILO*/} -->
+<!-- {/*SIMON*/} -->
 <?php
 
 use Illuminate\Support\Facades\Route;

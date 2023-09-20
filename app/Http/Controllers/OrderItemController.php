@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 //<!-- {/*JUANCAMILO*/} -->
+//<!-- {/*SIMON*/} -->
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
