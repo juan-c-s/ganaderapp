@@ -34,7 +34,6 @@ Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name("i
 Route::get('/events', 'App\Http\Controllers\EventController@index')->name("event.index");
 Route::get('/events/create', 'App\Http\Controllers\EventController@create')->name("event.create");
 Route::post('/events/save', 'App\Http\Controllers\EventController@save')->name("event.save");
-Route::post('/events/dateFilter', 'App\Http\Controllers\EventController@dateFilter')->name('event.dateFilter');
 
 Route::post('/reviews/save', 'App\Http\Controllers\ReviewController@save')->name("review.save");
 

@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
-use App\Models\Review;
+use App\Util\ImageUtil;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-
 
 class ProductController extends Controller
 {
@@ -75,9 +74,9 @@ class ProductController extends Controller
     public function save(Request $request): RedirectResponse
     {
         Product::validate($request);
-        //here will be the code to call the model and save it to the database
+        $request->image = ImageUtil::img2htmlbase64($request, 'image');
         Product::createProduct($request);
-        return redirect()->route('product.index');
+        redirect()->route('product.index');
     }
 
     public function delete(Request $request):RedirectResponse
