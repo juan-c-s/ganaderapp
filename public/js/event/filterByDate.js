@@ -1,4 +1,4 @@
-/** Donovan Castrillon */
+// DONOVAN
 
 $(document).ready(function() {
   $('#date').on('change', function() {

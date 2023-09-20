@@ -1,4 +1,4 @@
-/** Donovan Castrillon */
+// DONOVAN
 
 $(document).ready(function() {
     $('#supplier').on('keydown', function(event) {

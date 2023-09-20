@@ -1,7 +1,7 @@
-<!-- {/*JUANCAMILO*/} -->
-<!-- {/*SIMON*/} -->
 <?php
 
+// JUANCAMILO
+// SIMON
 use Illuminate\Support\Facades\Route;
 
 /*

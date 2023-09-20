@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models;
-//<!-- {/*JUANCAMILO*/} -->
-//<!-- {/*SIMON*/} -->
+// JUANCAMILO
+// SIMON
 use app\Models\Product;
 use app\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -1,5 +1,5 @@
-<!--/*Donovan Castrillon*/-->
-<!-- {/*JUANCAMILO*/} -->
+{{-- JUANCAMILO --}}
+{{-- DONOVAN --}}
 
 @extends('layouts.app')
 @section("title", $viewData["title"])

@@ -1,10 +1,16 @@
-<!-- {/*JUANCAMILO*/} -->
-<!-- {/*SIMON*/} -->
+{{-- JUANCAMILO --}}
+{{-- SIMON --}}
+{{-- DONOVAN --}}
+
 @extends('layouts.app')
 @section('title', $viewData["title"])
 @section('subtitle', 'Product List')
 @section('content')
-<div class="row">
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script src="{{asset('js/product/filterBySupplier.js')}}"> </script>
+<label for="supplier">Filter by supplier: </label>
+<input type="text" id="supplier">
+<div id='results' class="row">
   @foreach ($viewData["products"]  as $key => $product)
     <div class="col-md-4 col-lg-3 mb-2">
       <div class="card">
@@ -14,7 +20,7 @@
             class="btn bg-primary text-white">{{ $product->getTitle() }}</a>
             <br><br>
           <a href="{{ route('cart.add', ['id' => $key]) }}"
-            class="btn bg-primary text-white">add to cart</a>
+            class="btn bg-primary text-white">agregar a carrito</a>
         </div>
       </div>
     </div>

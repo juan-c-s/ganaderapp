@@ -2,7 +2,10 @@
 /** Donovan Castrillon */
 
 namespace App\Http\Controllers;
-//<!-- {/*JUANCAMILO*/} -->
+
+// JUANCAMILO
+// DONOVAN
+
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
