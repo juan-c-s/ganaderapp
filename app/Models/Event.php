@@ -23,21 +23,7 @@ class Event extends Model
      */
 
     protected $fillable = ['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location'];
-
-    public static function createEvent(Request $request):void
-    {
-        $newEvent = new Event();
-        $newEvent->setTitle($request->title);
-        $newEvent->setCategory($request->category);
-        $newEvent->setDescription($request->description);
-        $newEvent->setImage($request->image);
-        $newEvent->setLocation($request->location);
-        $newEvent->setDate($request->date);
-        $newEvent->setMaxCapacity($request->maxCapacity);
-        $newEvent->setUserId($request->user_id);
-        $newEvent->save();
-    }
-
+  
     public function user()
     {
         return $this->hasOne(User::class);

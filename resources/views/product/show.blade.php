@@ -34,15 +34,8 @@
           <form class="m-2" method="GET" action="{{ route('product.update', ['id'=> $viewData["products"]->getId()]) }}">
           @csrf
           <input type="hidden" name="id" value="{{$viewData["products"]->getId()}}" />
-          <input type="submit" class="btn btn-dark" value="Update Product" />
+          <input type="submit" class="btn btn-dark" value="delete" />
           </form>
-
-          <form class ="m-2" method="POST" action="{{ route('product.delete') }}">
-          @csrf
-          <input type="hidden" name="id" value="{{$viewData["products"]->getId()}}" />
-          <input type="submit" class="btn btn-dark" value="Delete Product" />
-          </form>
-
         @endif
 
         @if(count($viewData["reviews"])>0)
@@ -80,6 +73,7 @@
             <input type="hidden" name="product_id" value="{{$viewData["products"]->getId()}}" />
             <input type="submit" class="btn btn-dark" value="comment"/>
         </form>
+
   </div>
     </div>
   </div>
