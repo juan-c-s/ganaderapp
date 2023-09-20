@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-//<!-- {/*SIMON*/} -->
+// SIMON
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use app\Models\User;
@@ -48,7 +48,7 @@ class Event extends Model
     public function setUserId(int $userId): void
     {
         $this->attributes['user_id'] = $userId;
-    } 
+    }
 
     public static function validate(Request $request):void{
         $request->validate([
@@ -60,6 +60,20 @@ class Event extends Model
             'image'=>'required',
             'location'=>'required',
         ]);
+    }
+
+    public static function createEvent(Request $request):void
+    {
+        $newProduct = new Event();
+        $newProduct->setTitle($request->title);
+        $newProduct->setCategory($request->category);
+        $newProduct->setMaxCapacity($request->maxCapacity);
+        $newProduct->setDate($request->date);
+        $newProduct->setDescription($request->description);
+        $newProduct->setImage($request->image);
+        $newProduct->setLocation($request->location);
+        $newProduct->setUserId($request->user_id);
+        $newProduct->save();
     }
 
     public function getId(): int

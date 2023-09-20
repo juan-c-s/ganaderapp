@@ -35,7 +35,7 @@ class EventController extends Controller
         return view('event.create')->with("viewData",$viewData);
     }
 
-    public function save(Request $request):RedirectReponse
+    public function save(Request $request): RedirectResponse
     {
         Event::validate($request);
         $request->image = ImageUtil::img2htmlbase64($request, 'image');
