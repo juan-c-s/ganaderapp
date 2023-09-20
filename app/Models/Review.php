@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Models;
+
 // JUANCAMILO
 // SIMON
 use app\Models\Product;
 use app\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 
 class Review extends Model
 {
@@ -22,11 +23,10 @@ class Review extends Model
      * $this->attributes['created_at'] - string - contains the created_at timestamp
      * $this->attributes['updated_at'] - string - contains the updated_at timestamp
      * ***#*** Agregar created_at y updated_at
-    */ 
+     */
+    protected $fillable = ['comment', 'rating'];
 
-    protected $fillable = ['comment','rating'];
-
-    public static function createReview(Request $request):void
+    public static function createReview(Request $request): void
     {
         $newReview = new Review();
         $newReview->setComment($request->comment);
@@ -34,7 +34,7 @@ class Review extends Model
         $newReview->setProductId($request->product_id);
         $newReview->save();
     }
-    
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
@@ -55,11 +55,12 @@ class Review extends Model
         return $this->user;
     }
 
-    public static function validate(Request $request):void{
+    public static function validate(Request $request): void
+    {
         $request->validate([
-            "comment" => "required",
-            "rating" => "required|numeric|gt:0|lte:5",
-            "product_id" => "required|exists:products,id",
+            'comment' => 'required',
+            'rating' => 'required|numeric|gt:0|lte:5',
+            'product_id' => 'required|exists:products,id',
         ]);
     }
 
@@ -68,7 +69,7 @@ class Review extends Model
         return $this->attributes['id'];
     }
 
-    public function setId(int $id) : void
+    public function setId(int $id): void
     {
         $this->attributes['id'] = $id;
     }
@@ -83,13 +84,12 @@ class Review extends Model
         $this->attributes['product_id'] = $productId;
     }
 
-
     public function getComment(): string
     {
         return $this->attributes['comment'];
     }
 
-    public function setComment(string $comment ) : void
+    public function setComment(string $comment): void
     {
         $this->attributes['comment'] = $comment;
     }
@@ -99,9 +99,8 @@ class Review extends Model
         return $this->attributes['rating'];
     }
 
-    public function setRating(string $rating ) : void
+    public function setRating(string $rating): void
     {
         $this->attributes['rating'] = $rating;
     }
-
 }

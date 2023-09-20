@@ -1,7 +1,12 @@
 <?php
 
 namespace App\Models;
+<<<<<<< HEAD
 // SIMON
+=======
+
+//<!-- {/*SIMON*/} -->
+>>>>>>> 5237167 (Issue and pint)
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use app\Models\User;
@@ -22,9 +27,8 @@ class Event extends Model
      * $this->attributes['image'] - string - contains a base64 encoded image
      * $this->attributes['location'] - string - contains the physical location
      */
-
     protected $fillable = ['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location'];
-  
+
     public function user()
     {
         return $this->hasOne(User::class);
@@ -35,33 +39,35 @@ class Event extends Model
         return $this->user;
     }
 
-    public function setUser(User $user) : void
+    public function setUser(User $user): void
     {
         $this->user = $user;
     }
-    
+
     public function getUserId(): int
     {
         return $this->attributes['user_id'];
-    } 
+    }
 
     public function setUserId(int $userId): void
     {
         $this->attributes['user_id'] = $userId;
     }
 
-    public static function validate(Request $request):void{
+    public static function validate(Request $request): void
+    {
         $request->validate([
-            'title'=>'required',
-            'category'=>'required',
-            'maxCapacity'=>'required',
-            'date'=>'required',
-            'description'=>'required',
-            'image'=>'required',
-            'location'=>'required',
+            'title' => 'required',
+            'category' => 'required',
+            'maxCapacity' => 'required',
+            'date' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'location' => 'required',
         ]);
     }
 
+<<<<<<< HEAD
     public static function createEvent(Request $request):void
     {
         $newProduct = new Event();
@@ -74,6 +80,20 @@ class Event extends Model
         $newProduct->setLocation($request->location);
         $newProduct->setUserId($request->user_id);
         $newProduct->save();
+=======
+    public static function createEvent(Request $request): void
+    {
+        $newEvent = new Event();
+        $newEvent->setTitle($request->title);
+        $newEvent->setCategory($request->category);
+        $newEvent->setMaxCapacity($request->maxCapacity);
+        $newEvent->setDate($request->date);
+        $newEvent->setDescription($request->description);
+        $newEvent->setImage($request->image);
+        $newEvent->setLocation($request->location);
+        $newEvent->setUserId($request->user_id);
+        $newEvent->save();
+>>>>>>> 5237167 (Issue and pint)
     }
 
     public function getId(): int
@@ -126,7 +146,7 @@ class Event extends Model
         $this->attributes['description'] = $description;
     }
 
-    public function getImage() 
+    public function getImage()
     {
         return $this->attributes['image'];
     }
@@ -140,12 +160,12 @@ class Event extends Model
     {
         return $this->attributes['location'];
     }
-    
+
     public function setLocation(string $location): void
     {
         $this->attributes['location'] = $location;
     }
-    
+
     public function getMaxCapacity(): int
     {
         return $this->attributes['maxCapacity'];

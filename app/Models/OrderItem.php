@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Models;
+
 //<!-- {/*SIMON*/} -->
 
-use app\Models\Product;
 use app\Models\Order;
+use app\Models\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-
 
 class OrderItem extends Model
 {
@@ -20,8 +20,7 @@ class OrderItem extends Model
      * $this->attributes['fullValue'] - int - contains the total amount of the purchase
      * $this->attributes['created_at'] - string - contains the created_at timestamp
      * $this->attributes['updated_at'] - string - contains the updated_at timestamp
-    */ 
-
+     */
     protected $fillable = [];
 
     public function product()
@@ -44,10 +43,11 @@ class OrderItem extends Model
         return $this->order;
     }
 
-    public static function validate(Request $request):void{
+    public static function validate(Request $request): void
+    {
         $request->validate([
-            "quantity" => "required",
-            "fullValue" => "required",
+            'quantity' => 'required',
+            'fullValue' => 'required',
         ]);
     }
 
@@ -56,7 +56,7 @@ class OrderItem extends Model
         return $this->attributes['quantity'];
     }
 
-    public function setQuantity(int $quantity) : void
+    public function setQuantity(int $quantity): void
     {
         $this->attributes['quantity'] = $quantity;
     }
@@ -66,7 +66,7 @@ class OrderItem extends Model
         return $this->attributes['fullValue'];
     }
 
-    public function setFullValue(int $fullValue ) : void
+    public function setFullValue(int $fullValue): void
     {
         $this->attributes['fullValue'] = $fullValue;
     }

@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Models;
+
 // JUANCAMILO
 // SIMON
-use App\Models\OrderItem;
-use App\Models\Review;
-use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
 
 class Product extends Model
 {
@@ -25,25 +23,24 @@ class Product extends Model
      * $this->attributes['category'] - int - contains the product price
      * $this->attributes['supplier'] - int - contains the product price
      * ***#*** Agregar created_at y updated_at
-     */ 
-    
-    protected $fillable = ['title','price','image','description','rating','category','supplier'];
-    
-    public static function validate(Request $request):void
+     */
+    protected $fillable = ['title', 'price', 'image', 'description', 'rating', 'category', 'supplier'];
+
+    public static function validate(Request $request): void
     {
         $request->validate([
-            "title" => "required",
-            "price" => "required|numeric|gt:0",
-            "image" => "required",
-            "description" => "required",
-            "rating" => "required|numeric|gt:0",
-            "category" => "required",
-            "supplier" => "required",
-            "user_id" => "required|exists:users,id",
+            'title' => 'required',
+            'price' => 'required|numeric|gt:0',
+            'image' => 'required',
+            'description' => 'required',
+            'rating' => 'required|numeric|gt:0',
+            'category' => 'required',
+            'supplier' => 'required',
+            'user_id' => 'required|exists:users,id',
         ]);
     }
 
-    public static function createProduct(Request $request):void
+    public static function createProduct(Request $request): void
     {
         $newProduct = new Product();
         $newProduct->setTitle($request->title);
@@ -57,7 +54,7 @@ class Product extends Model
         $newProduct->save();
     }
 
-    public static function updateProduct(Request $request):void
+    public static function updateProduct(Request $request): void
     {
         $product = Product::find($request->id);
         $product->setTitle($request->title);
@@ -69,7 +66,7 @@ class Product extends Model
         $product->save();
     }
 
-    public static function deleteById(Request $request):void
+    public static function deleteById(Request $request): void
     {
         $product = Product::findOrFail($request->id);
         $product->reviews()->delete();
@@ -81,21 +78,22 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getUser(){
+    public function getUser()
+    {
         return $this->user;
     }
 
-    public function setUser(int $user):void
+    public function setUser(int $user): void
     {
         $this->user = $user;
     }
-    
-    public function getUserId():int
+
+    public function getUserId(): int
     {
         return $this->attributes['user_id'];
     }
 
-    public function setUserId(int $userId):void
+    public function setUserId(int $userId): void
     {
         $this->attributes['user_id'] = $userId;
     }
@@ -115,7 +113,7 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function getReviews():Collection
+    public function getReviews(): Collection
     {
         return $this->reviews;
     }
@@ -125,7 +123,7 @@ class Product extends Model
         return $this->attributes['id'];
     }
 
-    public function setId($id) : void
+    public function setId($id): void
     {
         $this->attributes['id'] = $id;
     }
@@ -135,7 +133,7 @@ class Product extends Model
         return $this->attributes['title'];
     }
 
-    public function setTitle($title) : void
+    public function setTitle($title): void
     {
         $this->attributes['title'] = $title;
     }
@@ -145,7 +143,7 @@ class Product extends Model
         return $this->attributes['image'];
     }
 
-    public function setImage($image) : void
+    public function setImage($image): void
     {
         $this->attributes['image'] = $image;
     }
@@ -155,7 +153,7 @@ class Product extends Model
         return $this->attributes['category'];
     }
 
-    public function setCategory($category) : void
+    public function setCategory($category): void
     {
         $this->attributes['category'] = $category;
     }
@@ -165,7 +163,7 @@ class Product extends Model
         return $this->attributes['price'];
     }
 
-    public function setPrice($price) : void
+    public function setPrice($price): void
     {
         $this->attributes['price'] = $price;
     }
@@ -175,7 +173,7 @@ class Product extends Model
         return $this->attributes['supplier'];
     }
 
-    public function setSupplier(string $supplier) : void
+    public function setSupplier(string $supplier): void
     {
         $this->attributes['supplier'] = $supplier;
     }
@@ -185,7 +183,7 @@ class Product extends Model
         return $this->attributes['description'];
     }
 
-    public function setDescription(string $description) : void
+    public function setDescription(string $description): void
     {
         $this->attributes['description'] = $description;
     }
@@ -195,9 +193,8 @@ class Product extends Model
         return $this->attributes['rating'];
     }
 
-    public function setRating(string $rating) : void
+    public function setRating(string $rating): void
     {
         $this->attributes['rating'] = $rating;
     }
-
 }

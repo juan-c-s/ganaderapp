@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Models;
+
 //<!-- {/*SIMON*/} -->
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use app\Models\OrderItem;
 use app\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+
 class Order extends Model
 {
     // use HasFactory;
@@ -17,7 +19,6 @@ class Order extends Model
      * $this->attributes['dateDelivery'] - string - contains the date of delivery
      * $this->attributes['receipt'] - string - contains the recipt of the product
      */
-
     protected $fillable = [];
 
     public function orderItem(): OrderItem
@@ -43,10 +44,10 @@ class Order extends Model
     public static function validate(Request $request): void
     {
         $request->validate([
-            "orderItems" => "required|string",
-            "user" => "required|string",
-            "dateDelivery" => "required|date",
-            "receipt" => "required|string",
+            'orderItems' => 'required|string',
+            'user' => 'required|string',
+            'dateDelivery' => 'required|date',
+            'receipt' => 'required|string',
         ]);
     }
 

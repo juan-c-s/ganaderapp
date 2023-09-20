@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Models;
+
 // JUANCAMILO
 // SIMON
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use app\Models\Review;
 use app\Models\Event;
 use app\Models\Order;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use app\Models\Review;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -26,7 +27,7 @@ class User extends Authenticatable
      * $this->attributes['wallet'] - int - contains currency of the user
      * $this->attributes['role'] - string - contains the role of the user (OwnerEvent - Participant)
      * ***#*** Agregar created_at y updated_at
-    */ 
+     */
 
     /**
      * The attributes that are mass assignable.
@@ -39,7 +40,7 @@ class User extends Authenticatable
         'password',
         'address',
         'wallet',
-        'role'
+        'role',
     ];
 
     /**

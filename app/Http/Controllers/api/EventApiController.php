@@ -1,4 +1,5 @@
 <?php
+
 /** Donovan Castrillon */
 
 // DONOVAN
@@ -6,8 +7,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class EventApiController extends Controller
 {
@@ -17,11 +18,11 @@ class EventApiController extends Controller
         $filterDate = $request->input('date');
         if ($filterDate == '') {
             return response()->json($allEvents);
-        }
-        else {
-            $filtered = array_filter($allEvents, function($object) use ($filterDate) {
+        } else {
+            $filtered = array_filter($allEvents, function ($object) use ($filterDate) {
                 return $object['date'] == $filterDate;
             });
+
             return response()->json($filtered);
         }
     }

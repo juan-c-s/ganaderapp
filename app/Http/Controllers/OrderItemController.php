@@ -1,23 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
+
 // JUANCAMILO
 // SIMON
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Models\Product;
 
 class OrderItemController extends Controller
 {
-
     public function __construct()
     {
         // Assign to ALL methods in this Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request): view  {
+    public function index(Request $request): view
+    {
 
         $products = Product::all();
         $cartProducts = [];
@@ -31,13 +32,14 @@ class OrderItemController extends Controller
         }
         $total = 0;
         foreach ($cartProducts as $key => $product) {
-                $total += $product->getPrice();
+            $total += $product->getPrice();
         }
 
         $viewData = [];
         $viewData['products'] = $products;
         $viewData['cartProducts'] = $cartProducts;
         $viewData['totalCart'] = $total;
+
         return view('cart.index')->with('viewData', $viewData);
     }
 
@@ -56,7 +58,6 @@ class OrderItemController extends Controller
         return back()->with('error_msg', 'The product does not exit on the cart.');
     }
 
-
     public function add(Request $request, string $id): RedirectResponse
     {
 
@@ -70,7 +71,7 @@ class OrderItemController extends Controller
     public function clear(Request $request)
     {
         $request->session()->forget('cart_product_data');
+
         return back();
     }
-
 }
