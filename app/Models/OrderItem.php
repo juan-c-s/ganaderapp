@@ -46,19 +46,19 @@ class OrderItem extends Model
 
     public static function validate(Request $request):void{
         $request->validate([
-            "amount" => "required",
+            "quantity" => "required",
             "fullValue" => "required",
         ]);
     }
 
-    public function getAmount(): int
+    public function getQuantity(): int
     {
-        return $this->attributes['amount'];
+        return $this->attributes['quantity'];
     }
 
-    public function setAmount(int $amount) : void
+    public function setQuantity(int $quantity) : void
     {
-        $this->attributes['amount'] = $amount;
+        $this->attributes['quantity'] = $quantity;
     }
 
     public function getFullValue(): int
