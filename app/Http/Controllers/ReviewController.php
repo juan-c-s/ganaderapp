@@ -36,11 +36,7 @@ class ReviewController extends Controller
     {
         Review::validate($request);
         // //here will be the code to call the model and save it to the database
-        $newReview = new Review();
-        $newReview->setComment($request->comment);
-        $newReview->setRating($request->rating);
-        $newReview->setProductId($request->product_id);
-        $newReview->save();
+        Review::createReview($request);
         return back();
     }
 

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('supplier')->nullable();
             $table->string('description')->nullable();
             $table->integer('rating');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
