@@ -15,7 +15,7 @@ class ProductOwnerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ((Auth::user() && Auth::user()->getRole() == 'admin') || (Auth::user()->getId() == $request->id) ){ 
+        if ((Auth::user() && Auth::user()->getRole() == 'admin') || (Auth::user()->getId() == $request->user_id) ){ 
              return $next($request); 
         }else {
             return redirect()->route('product.index');
