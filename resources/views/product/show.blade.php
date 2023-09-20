@@ -54,7 +54,7 @@
             @foreach( $viewData["reviews"] as $review)
             <div class="mb-3">
                 <h6 class="card-subtitle mb-2 text-muted">Rating: <span id="rating">{{$review->getRating()}}</span>/5</h6>
-                <p class="card-text">{{$review->getComment}}</p>
+                <p class="card-text">{{$review->getComment()}}</p>
             </div>
             @endforeach
           </div>
