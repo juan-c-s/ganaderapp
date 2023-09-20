@@ -2,11 +2,11 @@
 /** Donovan Castrillon */
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Product;
 use App\Models\Event;
+use Illuminate\Http\RedirectResponse;
 
 use App\Util\ImageUtil;
 class EventController extends Controller
@@ -33,19 +33,18 @@ class EventController extends Controller
         return view('event.create')->with("viewData",$viewData);
     }
 
-    public function save(Request $request)
+    public function save(Request $request):RedirectReponse
     {
         Event::validate($request);
-        $data = $request->only(['title', 'category', 'maxCapacity', 'date', 'description', 'location']);
-        $data['image'] = ImageUtil::img2htmlbase64($request, 'image');
-        Event::create($data);
-        return back();
+        $request->image = ImageUtil::img2htmlbase64($request, 'image');
+        Event::createEvent($request);
+        return redirect()->route('event.index');
     }
 
-    public function delete(Request $request): View
+    public function delete(Request $request): RedirectResponse
     {
         Product::destroy($request->id);
-        return $this->index();
+        return  redirect()->route('event.index');
     }
 
 }

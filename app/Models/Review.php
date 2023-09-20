@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-
+//<!-- {/*JUANCAMILO*/} -->
+//<!-- {/*SIMON*/} -->
 use app\Models\Product;
 use app\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,6 +26,15 @@ class Review extends Model
 
     protected $fillable = ['comment','rating'];
 
+    public static function createReview(Request $request):void
+    {
+        $newReview = new Review();
+        $newReview->setComment($request->comment);
+        $newReview->setRating($request->rating);
+        $newReview->setProductId($request->product_id);
+        $newReview->save();
+    }
+    
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

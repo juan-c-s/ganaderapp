@@ -15,3 +15,6 @@ Para más informacion acerca de laravel, consular este link https://laravel.com/
 - Encender servidor apache y sql server 
 - Especificar el nombre de la base de datos en las variables de ambiente en el archivo env (.env) DB_DATABASE
 - php artisan migrate   (Generar las tablas pertinentes)
+
+
+wiki : https://docs.google.com/document/d/1GjIyKrjM1PkndZuQJc9qv9AHSMFQaOEMBM6Aa17vP-U/edit?usp=sharing

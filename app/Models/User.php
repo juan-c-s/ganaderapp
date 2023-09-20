@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-
+//<!-- {/*JUANCAMILO*/} -->
+//<!-- {/*SIMON*/} -->
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use app\Models\Review;
 use app\Models\Event;
@@ -60,6 +61,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function setProducts(Collection $products): void
+    {
+        $this->products = $products;
+    }
 
     public function review()
     {

@@ -1,47 +1,70 @@
+<!-- {/*SIMON*/} -->
 @extends('layouts.app')
-@section("title", $viewData["title"])
-@section("subtitle", $viewData["subtitle"])
 @section('content')
-
     <div class="container" style="margin-top: 80px">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <h4>Productos</h4>
-                    </div>
+        @if(session()->has('success_msg'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session()->get('success_msg') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+        @endif
+        @if(session()->has('alert_msg'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ session()->get('alert_msg') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+        @endif
+        @if(count($errors) > 0)
+            @foreach($errors0>all() as $error)
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ $error }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-                <hr>
-                <div class="row">
-                    @foreach($viewData["products"] as $key => $product)
+            @endforeach
+        @endif
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+            
+                <br>
+                @foreach($viewData["cartProducts"] as $key => $product)
+                    <div class="row">
                         <div class="col-lg-3">
-                            <div class="card" style="margin-bottom: 20px; height: auto;">
-                                <img src="{{ $product->image }}" alt="">
-                                <div class="card-body">
-                                    <a href=""><h6 class="card-title">{{ $product->title }}</h6></a>
-                                    <p>${{ $product->price }}</p>
-                                    <a href="{{ route('cart.add', ['id'=> $key]) }}">Add to cart</a>
-                                </div>
+                            <img src="{{ $product->getImage() }}" class="img-thumbnail" width="200" height="200">
+                        </div>
+                        <div class="col-lg-5">
+                            <p>
+                                <b>{{ $product->getTitle() }}</b><br>
+                                <b>Price: </b>${{ $product->getPrice() }}<br>
+                            </p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="row">
+                                <a href="{{ route('cart.remove',['id'=>$key]) }}" 
+                                    class="btn btn-dark btn-sm" style="margin-right: 10px;"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-                <div class="row justify-content-center">
-              <div class="col-md-12">
-              <h1>Products in cart</h1>
-                <ul>
-                  @foreach($viewData["cartProducts"] as $key => $product)
-                    <li>
-                      Id: {{ $key }} - 
-                      Name: {{ $product["title"] }} -
-                      Price: {{ $product["price"] }}
-                    </li>
-                  @endforeach
-                </ul>
-                <a href="{{ route('cart.removeAll') }}">Remove all products from cart</a>
-              </div>
+                    </div>
+                    <hr>
+                @endforeach
+                    <a href="{{ route('cart.clear') }}"
+                       class="btn bg-primary text-white">Delete Cart</a>
             </div>
-          </div>
+                <div class="col-lg-5">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><b>Total: </b>${{ $viewData["totalCarrito"] }}</li>
+                        </ul>
+                    </div>
+                    <br><a href="{{ route('product.index') }}" class="btn btn-dark">Continue shopping</a>
+                    <a href="/" class="btn btn-success">Procedure the checkout</a>
+                </div>
         </div>
+        <br><br>
     </div>
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+//<!-- {/*SIMON*/} -->
 
 use app\Models\Product;
 use app\Models\Order;

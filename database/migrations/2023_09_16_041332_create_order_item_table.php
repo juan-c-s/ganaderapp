@@ -1,3 +1,4 @@
+<!-- {/*JUANCAMILO*/} -->
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -16,6 +17,8 @@ return new class extends Migration
             $table->integer('amount');
             $table->integer('fullValue');
             $table->string('dateOfPurchase');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }

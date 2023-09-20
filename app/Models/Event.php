@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+//<!-- {/*SIMON*/} -->
 
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use app\Models\User;
@@ -34,8 +35,22 @@ class Event extends Model
         return $this->user;
     }
 
+    public function setUser(User $user) : void
+    {
+        $this->user = $user;
+    }
+    
+    public function getUserId(): int
+    {
+        return $this->attributes['user_id'];
+    } 
+
+    public function setUserId(int $userId): void
+    {
+        $this->attributes['user_id'] = $userId;
+    } 
+
     public static function validate(Request $request):void{
-        $newEvent = new Event();
         $request->validate([
             'title'=>'required',
             'category'=>'required',
@@ -50,6 +65,11 @@ class Event extends Model
     public function getId(): int
     {
         return $this->attributes['id'];
+    }
+
+    public function setId(int $id): void
+    {
+        $this->attributes['id'] = $id;
     }
 
     public function getTitle(): string
@@ -92,12 +112,12 @@ class Event extends Model
         $this->attributes['description'] = $description;
     }
 
-    public function getImage(): string
+    public function getImage() 
     {
         return $this->attributes['image'];
     }
 
-    public function setImage(string $image): void
+    public function setImage($image): void
     {
         $this->attributes['image'] = $image;
     }
