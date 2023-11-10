@@ -53,7 +53,7 @@
                     <hr>
                 @endforeach
                     <a href="{{ route('cart.clear') }}"
-                       class="btn bg-primary text-white">Delete Cart</a>
+                       class="btn bg-primary text-white">{{__('Delete Cart')}}</a>
             </div>
                 <div class="col-lg-5">
                     <div class="card">
@@ -61,8 +61,8 @@
                             <li class="list-group-item"><b>Total: </b>${{ $viewData["totalCart"] }}</li>
                         </ul>
                     </div>
-                    <br><a href="{{ route('product.index') }}" class="btn btn-dark">Continue shopping</a>
-                    <a href="/" class="btn btn-success">Procedure the checkout</a>
+                    <br><a href="{{ route('product.index') }}" class="btn btn-dark">{{__('Continue shopping')}}</a>
+                    <a href="/" class="btn btn-success">{{__('Procedure the checkout')}}</a>
                 </div>
         </div>
         <br><br>

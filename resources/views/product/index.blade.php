@@ -8,7 +8,7 @@
 @section('content')
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script src="{{asset('js/product/filterBySupplier.js')}}"> </script>
-<label for="supplier">Filter by supplier: </label>
+<label for="supplier">{{__('Filter by supplier:')}} </label>
 <input type="text" id="supplier">
 <div id='results' class="row">
   @foreach ($viewData["products"]  as $key => $product)
@@ -20,7 +20,7 @@
             class="btn bg-primary text-white">{{ $product->getTitle() }}</a>
             <br><br>
           <a href="{{ route('cart.add', ['id' => $key]) }}"
-            class="btn bg-primary text-white">agregar a carrito</a>
+            class="btn bg-primary text-white">{{__('Add To Cart')}}</a>
         </div>
       </div>
     </div>

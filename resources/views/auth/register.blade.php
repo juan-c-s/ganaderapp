@@ -73,8 +73,8 @@
                             <div class="col-md-6">
                                 <select class="form-select" name="role" id="role" required>
                                 <option value=""></option>
-                                <option value="user">Usuario</option>
-                                <option value="admin">Admin</option>
+                                <option value="user">{{__('User')}}</option>
+                                <option value="admin">{{__('Admin')}}</option>
                             </select>
 
                                 @error('role')

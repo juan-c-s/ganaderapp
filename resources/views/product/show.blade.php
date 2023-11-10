@@ -50,10 +50,10 @@
         @if(count($viewData["reviews"])>0)
         <div class="card mt-4">
           <div class="card-body">
-            <h5 class="card-title">Reviews</h5>
+            <h5 class="card-title">{{__('Reviews')}}</h5>
             @foreach( $viewData["reviews"] as $review)
             <div class="mb-3">
-                <h6 class="card-subtitle mb-2 text-muted">Rating: <span id="rating">{{$review->getRating()}}</span>/5</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{__('Rating:')}} <span id="rating">{{$review->getRating()}}</span>/5</h6>
                 <p class="card-text">{{$review->getComment()}}</p>
             </div>
             @endforeach
@@ -70,9 +70,9 @@
         @endif
         <form method ="POST" action="{{route('review.save')}}" class="pt-4">
           @csrf
-            <label for="comment">Comment</label>
+            <label for="comment">{{__('Comment')}}</label>
             <textarea class="form-control m-2" name="comment" rows="3"></textarea>
-            <label for="rating" >Rating</label>
+            <label for="rating" >{{__('Rating')}}</label>
             <input type="number" name="rating" class="form-control w-25 m-2"/>
             @error('rating')
                 <span class="invalid-feedback" role="alert">
