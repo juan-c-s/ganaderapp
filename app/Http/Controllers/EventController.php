@@ -12,6 +12,7 @@ use App\Util\ImageUtil;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use GuzzleHttp\Client;
 
 class EventController extends Controller
 {
@@ -27,7 +28,12 @@ class EventController extends Controller
         $viewData['title'] = 'Events - Ganaderapp';
         $viewData['subtitle'] = 'List of events';
         $viewData['events'] = Event::all();
+        $apiKey = env('WEATHER_API_URL');
 
+        foreach($viewData['events'] as $key => $event){
+            
+            $url = 'https://api.openweathermap.org/data/2.5/weather?q='.$event->getLocation().'&appid=.';
+        }
         return view('event.index')->with('viewData', $viewData);
     }
 

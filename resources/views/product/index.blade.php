@@ -19,7 +19,7 @@
           <a href="{{ route('product.show', ['id'=> $product->getId()]) }}"
             class="btn bg-primary text-white">{{ $product->getTitle() }}</a>
             <br><br>
-          <a href="{{ route('cart.add', ['id' => $key]) }}"
+          <a href="{{ route('cart.add', ['id' => $product->getId()]) }}"
             class="btn bg-primary text-white">{{__('Add To Cart')}}</a>
         </div>
       </div>

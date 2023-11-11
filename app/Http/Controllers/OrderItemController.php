@@ -20,23 +20,15 @@ class OrderItemController extends Controller
     public function index(Request $request): view
     {
 
-        $products = Product::all();
         $cartProducts = [];
         $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
-        if ($cartProductData) {
-            foreach ($products as $key => $product) {
-                if (in_array($key, array_keys($cartProductData))) {
-                    $cartProducts[$key] = $product;
-                }
-            }
-        }
+        $cartProducts = Product::where('id',$cartProductData)->get();
         $total = 0;
         foreach ($cartProducts as $key => $product) {
             $total += $product->getPrice();
         }
 
         $viewData = [];
-        $viewData['products'] = $products;
         $viewData['cartProducts'] = $cartProducts;
         $viewData['totalCart'] = $total;
 
@@ -46,9 +38,9 @@ class OrderItemController extends Controller
     public function remove(string $id, Request $request)
     {
         $cartProductData = $request->session()->get('cart_product_data');
+        // dd($cartProductData);
 
         if (isset($cartProductData[$id])) {
-
             unset($cartProductData[$id]);
             $request->session()->put('cart_product_data', $cartProductData);
 
@@ -60,7 +52,6 @@ class OrderItemController extends Controller
 
     public function add(Request $request, string $id): RedirectResponse
     {
-
         $cartProductData = $request->session()->get('cart_product_data');
         $cartProductData[$id] = $id;
         $request->session()->put('cart_product_data', $cartProductData);
@@ -71,7 +62,6 @@ class OrderItemController extends Controller
     public function clear(Request $request)
     {
         $request->session()->forget('cart_product_data');
-
         return back();
     }
 }

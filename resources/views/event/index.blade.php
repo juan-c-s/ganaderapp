@@ -15,6 +15,7 @@
         <div class="card-body text-center">
           <img src="{{$event->getImage()}}" class="img-fluid img-thumbnail" alt="event_image">
           <h2>{{$event->getTitle()}}</h2>
+          <h3>{{$event->getLocation()}}</h3>
           <p>{{$event->getDescription()}}</p>
           <p>{{$event->getDate()}}</p>
         </div>

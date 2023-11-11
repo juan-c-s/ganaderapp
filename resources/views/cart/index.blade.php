@@ -40,12 +40,12 @@
                         <div class="col-lg-5">
                             <p>
                                 <b>{{ $product->getTitle() }}</b><br>
-                                <b>Price: </b>${{ $product->getPrice() }}<br>
+                                <b>{{__('Price')}}: </b>${{ $product->getPrice() }}<br>
                             </p>
                         </div>
                         <div class="col-lg-4">
                             <div class="row">
-                                <a href="{{ route('cart.remove',['id'=>$key]) }}" 
+                                <a href="{{ route('cart.remove',['id'=>$product->getId()]) }}" 
                                     class="btn btn-dark btn-sm" style="margin-right: 10px;"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                 <div class="col-lg-5">
                     <div class="card">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Total: </b>${{ $viewData["totalCart"] }}</li>
+                            <li class="list-group-item"><b>{{__('Total')}}: </b>${{ $viewData["totalCart"] }}</li>
                         </ul>
                     </div>
                     <br><a href="{{ route('product.index') }}" class="btn btn-dark">{{__('Continue shopping')}}</a>
