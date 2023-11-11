@@ -17,19 +17,19 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">
-           price :  {{ $viewData["products"]->getPrice()}}
+           {{__('price')}} :  {{ $viewData["products"]->getPrice()}}
           </h5>
           <h5 class="card-title">
-           Seller's rating :  {{ $viewData["products"]->getRating()}}
+           {{__('Sellers rating')}} :  {{ $viewData["products"]->getRating()}}
           </h5>
           <h5 class="card-title">
-           Breed :  {{ $viewData["products"]->getCategory() }}
+           {{__('Breed')}} :  {{ $viewData["products"]->getCategory() }}
           </h5>
           <h5 class="card-title">
-            Supplier :  {{ $viewData["products"]->getSupplier() }}
+            {{__('Supplier')}} :  {{ $viewData["products"]->getSupplier() }}
           </h5>
           <h5 class="card-title">
-            Image: <img src="{{$viewData["products"]->getImage()}}" class="img-fluid img-thumbnail">
+            {{__('Image')}}: <img src="{{$viewData["products"]->getImage()}}" class="img-fluid img-thumbnail">
         </h5>
         @if ((Auth::user() && Auth::user()->getRole() == 'admin') || (Auth::user()->getId() == $viewData["products"]->getUserId())) 
           <form class="m-2" method="GET" action="{{ route('product.update', ['id'=> $viewData["products"]->getId()]) }}">
