@@ -45,6 +45,7 @@
     "Supplier":"Supplier",
     "Image":"Image",
     "Price":"Price",
-    "Total":"Total"
+    "Total":"Total",
+    "Current Weather":"Current Weather"
 
 }

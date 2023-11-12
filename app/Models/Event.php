@@ -22,6 +22,7 @@ class Event extends Model
      * $this->attributes['description'] - string - contains a event description
      * $this->attributes['image'] - string - contains a base64 encoded image
      * $this->attributes['location'] - string - contains the physical location
+     * $this->attributes['weather'] - string - contains the current weather
      */
     protected $fillable = ['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location'];
 
@@ -145,6 +146,16 @@ class Event extends Model
     public function setLocation(string $location): void
     {
         $this->attributes['location'] = $location;
+    }
+
+    public function getWeather(): string
+    {
+        return $this->attributes['weather'];
+    }
+
+    public function setWeather(string $weather): void
+    {
+        $this->attributes['weather'] = $weather;
     }
 
     public function getMaxCapacity(): int
