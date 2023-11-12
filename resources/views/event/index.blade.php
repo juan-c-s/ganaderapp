@@ -18,6 +18,7 @@
           <h3>{{$event->getLocation()}}</h3>
           <p>{{$event->getDescription()}}</p>
           <p>{{$event->getDate()}}</p>
+          <p>{{__('Current Weather')}} {{$event->getWeather()}}°C</p>
         </div>
       </div>
     </div>
