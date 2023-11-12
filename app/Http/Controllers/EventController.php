@@ -31,7 +31,7 @@ class EventController extends Controller
         $apiKey = env('WEATHER_API_URL');
 
         foreach($viewData['events'] as $key => $event){
-            
+
             $url = 'https://api.openweathermap.org/data/2.5/weather?q='.$event->getLocation().'&appid=.';
         }
         return view('event.index')->with('viewData', $viewData);
