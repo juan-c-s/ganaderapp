@@ -1,9 +1,18 @@
-FROM php:8.2-rc-fpm@sha256:5b6b0ffa84853ebe224141764f3cd8697458b2c570d96b385212876f1fb7b3c9
+FROM php:8.2-alpine@sha256:9014f4186750a964d39521f297e2cd7a85558586b6f9c450284408c5e419893e
 
 RUN apt-get update -y && apt-get install -y libmcrypt-dev
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN apt install unzip, php-xml, php-curl
+
+ARG USERNAME=laravel-runer
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+
+USER $USERNAME
 WORKDIR /app
 COPY . /app
 
