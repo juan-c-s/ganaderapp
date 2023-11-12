@@ -28,15 +28,27 @@ class EventController extends Controller
         $viewData['title'] = 'Events - Ganaderapp';
         $viewData['subtitle'] = 'List of events';
         $viewData['events'] = Event::all();
-        $apiKey = env('WEATHER_API_URL');
 
         foreach($viewData['events'] as $key => $event){
-
-            $url = 'https://api.openweathermap.org/data/2.5/weather?q='.$event->getLocation().'&appid=.';
+            $event->setWeather($this->getWeatherByCity($event->getLocation()));
         }
         return view('event.index')->with('viewData', $viewData);
     }
-
+    
+    public function getWeatherByCity(string $cityName) : string {
+        $apiKey = env('WEATHER_API_URL');
+        $client = new Client();
+        $url = 'https://api.openweathermap.org/data/2.5/weather?q='.$cityName.'&appid='.$apiKey.'&units=metric';
+        $response = $client->get($url, [
+            'headers' => [
+                'Accept' => 'application/json',
+            ],
+        ]);
+        $body = $response->getBody()->getContents();
+        $data = json_decode($body,true);
+        return $data["main"]["temp"];
+    }
+    
     public function create(): View
     {
         $viewData = []; //to be sent to the view
