@@ -22,7 +22,7 @@ class OrderItemController extends Controller
 
         $cartProducts = [];
         $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
-        $cartProducts = Product::where('id',$cartProductData)->get();
+        $cartProducts = Product::where('id', $cartProductData)->get();
         $total = 0;
         foreach ($cartProducts as $key => $product) {
             $total += $product->getPrice();
@@ -62,6 +62,7 @@ class OrderItemController extends Controller
     public function clear(Request $request)
     {
         $request->session()->forget('cart_product_data');
+
         return back();
     }
 }
