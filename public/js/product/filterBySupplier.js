@@ -26,7 +26,6 @@ $(document).ready(function() {
                 if (data.length != 0) {
                     resultDiv.empty();
                     for (var key in data) {
-                    //<img src="{{$event->getImage()}}" class="img-fluid img-thumbnail" alt="event_image">
                     resultDiv.append('<div class="col-md-4 col-lg-3 mb-2"><div class="card">\
                                         <div class="card-body text-center">' +
                                         '<img src=\"'+ data[key]['image'] +'\" class=\"card-img-top img-card\" alt=\"event_image\">' +
