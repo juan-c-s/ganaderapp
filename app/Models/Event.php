@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 // SIMON
 // DONOVAN
 

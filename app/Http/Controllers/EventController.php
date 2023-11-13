@@ -9,10 +9,10 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Product;
 use App\Util\ImageUtil;
+use GuzzleHttp\Client;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use GuzzleHttp\Client;
 
 class EventController extends Controller
 {
@@ -25,17 +25,19 @@ class EventController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Events - Ganaderapp';
-        $viewData['subtitle'] = 'List of events';
+        $viewData['title'] = __('Events - Ganaderapp');
+        $viewData['subtitle'] = __('List of events');
         $viewData['events'] = Event::all();
 
-        foreach($viewData['events'] as $key => $event){
+        foreach ($viewData['events'] as $key => $event) {
             $event->setWeather($this->getWeatherByCity($event->getLocation()));
         }
+
         return view('event.index')->with('viewData', $viewData);
     }
-    
-    public function getWeatherByCity(string $cityName) : string {
+
+    public function getWeatherByCity(string $cityName): string
+    {
         $apiKey = env('WEATHER_API_URL');
         $client = new Client();
         $url = 'https://api.openweathermap.org/data/2.5/weather?q='.$cityName.'&appid='.$apiKey.'&units=metric';
@@ -45,14 +47,16 @@ class EventController extends Controller
             ],
         ]);
         $body = $response->getBody()->getContents();
-        $data = json_decode($body,true);
-        return $data["main"]["temp"];
+        $data = json_decode($body, true);
+
+        return $data['main']['temp'];
     }
-    
+
     public function create(): View
     {
-        $viewData = []; //to be sent to the view
-        $viewData['title'] = 'Add Event';
+        $viewData = [];
+        $viewData['title'] = __('Events - Ganaderapp');
+        $viewData['subtitle'] = __('Create Event');
 
         return view('event.create')->with('viewData', $viewData);
     }

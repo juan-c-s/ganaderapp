@@ -24,8 +24,8 @@ class ProductController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Cows - Ganaderapp';
-        $viewData['subtitle'] = 'List of Cows';
+        $viewData['title'] = __('Cows - Ganaderapp');
+        $viewData['subtitle'] = __('List of Cows');
         $viewData['products'] = Product::all();
 
         return view('product.index')->with('viewData', $viewData);
@@ -37,7 +37,7 @@ class ProductController extends Controller
         if ($id > 0) {
             $product = Product::findOrFail($id);
             $viewData['title'] = $product->getTitle().' - Ganaderapp';
-            $viewData['subtitle'] = $product->getTitle().' - Cow information';
+            $viewData['subtitle'] = $product->getTitle().' - '.__('Cow information');
             $viewData['products'] = $product;
             $viewData['reviews'] = $product->getReviews();
 
@@ -54,7 +54,7 @@ class ProductController extends Controller
         if ($id > 0) {
             $product = Product::findOrFail($id);
             $viewData['title'] = $product->getTitle().' - Ganaderapp';
-            $viewData['subtitle'] = $product->getTitle().' - Cow information';
+            $viewData['subtitle'] = $product->getTitle().' - '.__('Cow information');
             $viewData['product'] = $product;
 
             return view('product.update')->with('viewData', $viewData);
@@ -67,6 +67,7 @@ class ProductController extends Controller
     {
         $viewData = []; //to be sent to the view
         $viewData['title'] = 'Add Cow';
+        $viewData['subtitle'] = __('Add Cow');
 
         return view('product.create')->with('viewData', $viewData);
     }
