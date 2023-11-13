@@ -1,21 +1,76 @@
+@font-face {
+  font-family: ganapp;
+  src: url(font/Impact.ttf);
+}
+
 .bg-secondary {
     background-color: #141414 !important;
-  }
+}
   
-  .copyright {
+.copyright {
     background-color: #98D2EB;
-  }
+}
   
-  .bg-primary {
+.bg-primary {
     background-color: #EEC643 !important;
-  }
+}
   
-  nav{
+nav{
     font-weight: 700;
-  }
+}
   
-  .img-card{
+.img-card{
     height: 18vw;
     object-fit: cover;
-  }
+}
+
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0.75)), 
+    url('https://github.com/sbetancurb/imagenes/blob/main/vaca-blanca-marron-mirando-directamente-camara-rebano-vacas-pasto-segundo-plano.jpg?raw=true');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
   
+.footer{
+    background-color: #98D2EB;
+    padding: 1em 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.dropbtn {
+  cursor: pointer;
+  background-color: #141414 !important;;
+}
+
+.dropdown {
+  float: right;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #141414 !important;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  right: 0;
+  z-index: 1;
+}
+
+.show {display: block;}
+
+.logo{
+  width: 20%;
+  height: 20%;
+}
+
+.clearfix{
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: large;
+}

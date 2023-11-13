@@ -22,12 +22,22 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
           
-          @auth
+        @auth
           <a class="nav-link active" href="{{ route('home.index') }}">{{__('Home')}}</a>
-          <a class="nav-link active" href="{{ route('product.index') }}">{{__('Marketplace')}}</a>
-          <a class="nav-link active" href="{{ route('product.create') }}">{{__('Create Product')}}</a>
-          <a class="nav-link active" href="{{ route('event.index') }}">{{__('Events')}}</a>
-          <a class="nav-link active" href="{{ route('event.create') }}">{{__('Create Event')}}</a>
+          <div class="dropdown">
+              <p class="dropbtn nav-link active" onclick="myFunction('myDropdown')">{{__('Product')}}</p>
+              <div class="dropdown-content" id="myDropdown">
+                <a class="nav-link active" href="{{ route('product.index') }}">{{__('Marketplace')}}</a>
+                <a class="nav-link active" href="{{ route('product.create') }}">{{__('Create a Product')}}</a>
+              </div>
+          </div>
+          <div class="dropdown">
+              <p class="dropbtn nav-link active" onclick="myFunction('myDropdown2')">{{__('Event')}}</p>
+              <div class="dropdown-content" id="myDropdown2">
+                <a class="nav-link active" href="{{ route('event.index') }}">{{__('All Events')}}</a>
+                <a class="nav-link active" href="{{ route('event.create') }}">{{__('Create an Event')}}</a>
+              </div>
+          </div>
           <a class="nav-link active" href="{{ route('cart.index') }}">{{__('Cart')}}</a>
           @endauth
 
@@ -52,22 +62,46 @@
 
   <header class="masthead bg-primary text-white text-center py-4">
     <div class="container d-flex align-items-center flex-column">
-      <h2>@yield('subtitle', 'Welcome')</h2>
+      <h2>@yield('subtitle', 'WELCOME TO OUR APP')</h2>
     </div>
   </header>
   <!-- header -->
 
-  <div class="container my-4">
+  <div class="clearfix my-5">
     @yield('content')
   </div>
 
   <!-- footer -->
-  <div class="copyright py-4 text-center text-white">
-    <div class="container">
-    </div>
-  </div>
+  <footer class="footer text-center text-white">
+    Welcome to the application. Select the needed route placed in the navbar
+  </footer>
   <!-- footer -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script>
+    function myFunction(id) {
+      if (id == 'myDropdown'){
+        document.getElementById("myDropdown").classList.add("show");
+        document.getElementById("myDropdown2").classList.remove("show");
+      }
+      else{
+        document.getElementById("myDropdown2").classList.add("show");
+        document.getElementById("myDropdown").classList.remove("show");
+      }
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
 </body>
 </html>

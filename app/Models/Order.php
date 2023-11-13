@@ -6,6 +6,7 @@ namespace App\Models;
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use app\Models\OrderItem;
 use app\Models\User;
+use app\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -16,20 +17,10 @@ class Order extends Model
     /**
      * ORDER ATTRIBUTES
      * $this->attributes['id'] - int - unique number for a event
-     * $this->attributes['dateDelivery'] - string - contains the date of delivery
-     * $this->attributes['receipt'] - string - contains the recipt of the product
+     * $this->attributes['total'] - int - contains the date of delivery
+     * $this->attributes['products'] - string - contains the recipt of the product
      */
     protected $fillable = [];
-
-    public function orderItem(): OrderItem
-    {
-        return $this->belongsTo(OrderItem::class);
-    }
-
-    public function getOrderItem(): OrderItem
-    {
-        return $this->orderItem;
-    }
 
     public function user(): User
     {
@@ -41,13 +32,17 @@ class Order extends Model
         return $this->user;
     }
 
+    public function setUserId(int $userId): void
+    {
+        $this->attributes['user_id'] = $userId;
+    }
+
     public static function validate(Request $request): void
     {
         $request->validate([
-            'orderItems' => 'required|string',
             'user' => 'required|string',
-            'dateDelivery' => 'required|date',
-            'receipt' => 'required|string',
+            'total' => 'required|integer',
+            'products' => 'required|array',
         ]);
     }
 
@@ -61,23 +56,23 @@ class Order extends Model
         $this->attributes['id'] = $id;
     }
 
-    public function getDateDelivery(): string
+    public function getTotal(): string
     {
-        return $this->attributes['dateDelivery'];
+        return $this->attributes['total'];
     }
 
-    public function setDatedelivery($dateDelivery): void
+    public function setTotal($total): void
     {
-        $this->attributes['dateDelivery'] = $dateDelivery;
+        $this->attributes['total'] = $total;
     }
 
-    public function getReceipt(): string
+    public function getProducts(): array
     {
-        return $this->attributes['receipt'];
+        return $this->attributes['products'];
     }
 
-    public function setReceipt($receipt): void
+    public function setProducts($products): void
     {
-        $this->attributes['receipt'] = $receipt;
+        $this->attributes['products'] = $products;
     }
 }

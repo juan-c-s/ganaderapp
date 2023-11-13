@@ -31,7 +31,10 @@ Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->nam
 Route::get('/cart', 'App\Http\Controllers\OrderItemController@index')->name('cart.index');
 Route::get('/cart/add/{id}', 'App\Http\Controllers\OrderItemController@add')->name('cart.add');
 Route::get('/cart/remove/{id}', 'App\Http\Controllers\OrderItemController@remove')->name('cart.remove');
+Route::get('/cart/sum/{id}', 'App\Http\Controllers\OrderItemController@sum')->name('cart.sum');
+Route::get('/cart/res/{id}', 'App\Http\Controllers\OrderItemController@res')->name('cart.res');
 Route::get('/cart/clear', 'App\Http\Controllers\OrderItemController@clear')->name('cart.clear');
+Route::post('/cart/checkout', 'App\Http\Controllers\OrderItemController@checkout')->name('cart.checkout');
 
 Route::get('/image', 'App\Http\Controllers\ImageController@index')->name('image.index');
 Route::post('/image/save', 'App\Http\Controllers\ImageController@save')->name('image.save');

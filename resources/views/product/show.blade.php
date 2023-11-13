@@ -31,6 +31,8 @@
           <h5 class="card-title">
             {{__('Image')}}: <img src="{{$viewData["products"]->getImage()}}" class="img-fluid img-thumbnail">
         </h5>
+        <a href="{{ route('cart.add', ['id' => $viewData['products']->getId()]) }}"
+              class="btn btn-dark">{{__('Add To Cart')}}</a>
         @if ((Auth::user() && Auth::user()->getRole() == 'admin') || (Auth::user()->getId() == $viewData["products"]->getUserId())) 
           <form class="m-2" method="GET" action="{{ route('product.update', ['id'=> $viewData["products"]->getId()]) }}">
           @csrf
