@@ -9,3 +9,6 @@
 
 3) Acceder al puerto 8000, y estarás en la página principal.
 4) En el Nav Bar estarán los accesos a las rutas de las actividades 2 y 4
+
+Pruebas unitarias
+sudo apt-get install php-sqlite3
