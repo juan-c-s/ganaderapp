@@ -41,7 +41,7 @@
             {{__('Supplier')}} :  {{ $viewData["products"]->getSupplier() }}
           </h5>
           <h5 class="card-title">
-            {{__('Image')}}: <img src="{{$viewData["products"]->getImage()}}" class="img-fluid img-thumbnail">
+            {{__('Image')}}: <img style="width: 30%; height: 30%;" src="{{$viewData['products']->getImage()}}" class="img-fluid img-thumbnail">
         </h5>
         <a href="{{ route('cart.add', ['id' => $viewData['products']->getId()]) }}"
               class="btn btn-dark">{{__('Add To Cart')}}</a>

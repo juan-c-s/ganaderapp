@@ -12,7 +12,7 @@
 }
   
 .bg-primary {
-    background-color: #EEC643 !important;
+    background-color: rgb(255, 154, 72) !important;
 }
   
 nav{
@@ -65,12 +65,19 @@ body{
 .show {display: block;}
 
 .logo{
-  width: 20%;
-  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .clearfix{
   margin-left: 10%;
   margin-right: 10%;
   font-size: large;
+}
+
+.desc{
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center;
 }

@@ -43,7 +43,7 @@ class OrderItemController extends Controller
         }
         else
         {
-            return back()->with('alert_msg','There is nothing in the cart, go to shop something');
+            return back()->with('alert_msg','There is nothing in the cart, go to Marketplace');
         }
     }
 
@@ -147,6 +147,7 @@ class OrderItemController extends Controller
         $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
         $cartProducts = Product::whereIn('id',$cartProductData)->get();
         $user = auth::user(); 
+        $wallet = $user->getWallet();
         $total = 0;
         
         foreach ($cartProducts as $product) {
@@ -157,7 +158,7 @@ class OrderItemController extends Controller
         if ($total == 0){
             return back()->with('alert_msg', 'You dont have any product in your cart');
         }
-        else if($user->getWallet() < $total)
+        else if($wallet < $total)
         {
             return back()->with('alert_msg','You dont have enought cash to buy, please check your wallet');
         }
@@ -166,6 +167,8 @@ class OrderItemController extends Controller
             $Order = new Order();
             $Order->setTotal($total);
             $Order->setUserId($request->user_id);
+            $wallet -= $wallet - $total;
+            $user->setWallet($wallet);
             $Order->save();
         }
 
