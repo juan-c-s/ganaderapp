@@ -6,6 +6,18 @@
 @section('content')
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 <script src="{{asset('js/event/filterByDate.js')}}"></script>
+@if(session()->has('success_msg'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session()->get('success_msg') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif
+@if(session()->has('alert_msg'))
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ session()->get('alert_msg') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif
 @if ($viewData["events"])
   <input type="date" id="date" placeholder="Filter by date...">
   <div id='results' class="row">

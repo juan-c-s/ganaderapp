@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
 
+Route::get('/user/profile', 'App\Http\Controllers\UserController@profile')->name('user.profile');
+Route::post('/user/profile/addCash', 'App\Http\Controllers\UserController@addCash')->name('user.addCash');
+Route::post('/user/delete', 'App\Http\Controllers\UserController@delete')->name('user.delete');
+
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('product.index');
 Route::get('/products/create', 'App\Http\Controllers\ProductController@create')->name('product.create');
 Route::post('/products/save', 'App\Http\Controllers\ProductController@save')->name('product.save');

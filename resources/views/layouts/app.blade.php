@@ -41,19 +41,21 @@
           <a class="nav-link active" href="{{ route('cart.index') }}">{{__('Cart')}}</a>
           @endauth
 
-          @if (Auth::user() && Auth::user()->getRole() == 'admin')
-            <a class="nav-link active" href="{{ route('admin.index') }}">{{__('Admin')}}</a>
-          @endif
-
           <div class="vr bg-white mx-2 d-none d-lg-block"></div>
           @guest
           <a class="nav-link active" href="{{ route('login') }}">{{__('Login')}}</a>
           <a class="nav-link active" href="{{ route('register') }}">{{__('Register')}}</a>
           @else
-          <form id="logout" action="{{ route('logout') }}" method="POST"> 
-            <a role="button" class="nav-link active" onclick="document.getElementById('logout').submit();">{{__('Logout')}}</a>
-            @csrf
-          </form>
+          <div class="dropdown">
+              <i class="dropbtn nav-link active fa fa-user fa-lg" onclick="myFunction('myDropdown3')"></i>
+              <div class="dropdown-content" id="myDropdown3">
+                <a class="nav-link active" href="{{ route('user.profile')}}"><b>Profile</b></a>
+                <form id="logout" action="{{ route('logout') }}" method="POST"> 
+                  <a role="button" class="nav-link active" onclick="document.getElementById('logout').submit();">{{__('Logout')}}</a>
+                  @csrf
+                </form>
+              </div>
+            </div>
           @endguest
         </div>
       </div>
@@ -83,10 +85,17 @@
       if (id == 'myDropdown'){
         document.getElementById("myDropdown").classList.add("show");
         document.getElementById("myDropdown2").classList.remove("show");
+        document.getElementById("myDropdown3").classList.remove("show");
       }
-      else{
+      else if (id == 'myDropdown2'){
         document.getElementById("myDropdown2").classList.add("show");
         document.getElementById("myDropdown").classList.remove("show");
+        document.getElementById("myDropdown3").classList.remove("show");
+      }
+      else{
+        document.getElementById("myDropdown3").classList.add("show");
+        document.getElementById("myDropdown").classList.remove("show");
+        document.getElementById("myDropdown2").classList.remove("show");
       }
     }
 

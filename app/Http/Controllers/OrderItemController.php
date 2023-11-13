@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 
 class OrderItemController extends Controller
 {
@@ -20,23 +21,30 @@ class OrderItemController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request): view
+    public function index(Request $request)
     {
-        $cartProducts = [];
-        $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
-        $cartProducts = Product::whereIn('id',$cartProductData)->get();
-        $total = 0;
-        
-        foreach ($cartProducts as $product) {
-            $quantity = $product->getQuantity();
-            $total += $product->getPrice()*$quantity;
+        if ($request->session()->get('cart_product_data'))
+        {
+            $cartProducts = [];
+            $cartProductData = $request->session()->get('cart_product_data');
+            $cartProducts = Product::whereIn('id',$cartProductData)->get();
+            $total = 0;
+            
+            foreach ($cartProducts as $product) {
+                $quantity = $product->getQuantity();
+                $total += $product->getPrice()*$quantity;
+            }
+
+            $viewData = [];
+            $viewData['cartProducts'] = $cartProducts;
+            $viewData['totalCart'] = $total;
+
+            return view('cart.index')->with('viewData', $viewData);
         }
-
-        $viewData = [];
-        $viewData['cartProducts'] = $cartProducts;
-        $viewData['totalCart'] = $total;
-
-        return view('cart.index')->with('viewData', $viewData);
+        else
+        {
+            return back()->with('alert_msg','There is nothing in the cart, go to shop something');
+        }
     }
 
     public function sum(Request $request, string $id)
@@ -138,6 +146,7 @@ class OrderItemController extends Controller
         $cartProducts = [];
         $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
         $cartProducts = Product::whereIn('id',$cartProductData)->get();
+        $user = auth::user(); 
         $total = 0;
         
         foreach ($cartProducts as $product) {
@@ -147,6 +156,10 @@ class OrderItemController extends Controller
 
         if ($total == 0){
             return back()->with('alert_msg', 'You dont have any product in your cart');
+        }
+        else if($user->getWallet() < $total)
+        {
+            return back()->with('alert_msg','You dont have enought cash to buy, please check your wallet');
         }
         else
         {

@@ -3,6 +3,18 @@
 @section('title', $viewData["title"])
 @section('subtitle', $viewData["subtitle"])
 @section('content')
+@if(session()->has('success_msg'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session()->get('success_msg') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif
+@if(session()->has('alert_msg'))
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ session()->get('alert_msg') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
@@ -42,10 +54,10 @@
           </form>
 
           <form class ="m-2" method="POST" action="{{ route('product.delete') }}">
-          @csrf
-          <input type="hidden" name="id" value="{{$viewData["products"]->getId()}}" />
-          <input type="hidden" name="user_id" value="{{$viewData["products"]->getUserId()}}" />
-          <input type="submit" class="btn btn-dark" value="Delete Product" />
+            @csrf
+            <input type="hidden" name="id" value="{{$viewData["products"]->getId()}}" />
+            <input type="hidden" name="user_id" value="{{$viewData["products"]->getUserId()}}" />
+            <input type="submit" class="btn btn-dark" value="Delete Product" />
           </form>
         @endif
 
