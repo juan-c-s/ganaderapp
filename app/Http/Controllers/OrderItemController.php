@@ -22,13 +22,18 @@ class OrderItemController extends Controller
 
         $cartProducts = [];
         $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
-        $cartProducts = Product::where('id', $cartProductData)->get();
+
+        if(count($cartProductData))
+            $cartProducts = Product::whereIn('id', $cartProductData)->get();    
+
         $total = 0;
         foreach ($cartProducts as $key => $product) {
             $total += $product->getPrice();
         }
 
         $viewData = [];
+        $viewData['title'] = __('Cart');
+        $viewData['subtitle'] = __('Cart Details');
         $viewData['cartProducts'] = $cartProducts;
         $viewData['totalCart'] = $total;
 

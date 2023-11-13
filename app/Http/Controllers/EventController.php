@@ -25,8 +25,8 @@ class EventController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Events - Ganaderapp';
-        $viewData['subtitle'] = 'List of events';
+        $viewData['title'] = __('Events - Ganaderapp');
+        $viewData['subtitle'] = __('List of events');
         $viewData['events'] = Event::all();
 
         foreach ($viewData['events'] as $key => $event) {
@@ -54,8 +54,9 @@ class EventController extends Controller
 
     public function create(): View
     {
-        $viewData = []; //to be sent to the view
-        $viewData['title'] = 'Add Event';
+        $viewData = [];
+        $viewData['title'] = __('Events - Ganaderapp');
+        $viewData['subtitle'] = __('Create Event');
 
         return view('event.create')->with('viewData', $viewData);
     }

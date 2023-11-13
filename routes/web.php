@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
-
+Route::get('/toggleLang','App\Http\Controllers\HomeController@toggleLang')->name('home.toggleLang');
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('product.index');
 Route::get('/products/create', 'App\Http\Controllers\ProductController@create')->name('product.create');
 Route::post('/products/save', 'App\Http\Controllers\ProductController@save')->name('product.save');
@@ -44,8 +44,11 @@ Route::post('/reviews/save', 'App\Http\Controllers\ReviewController@save')->name
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
+    Route::get('/admin/analytics', 'App\Http\Controllers\AdminController@analytics')->name('admin.analytics');
+    Route::get('/admin/events', 'App\Http\Controllers\AdminController@event')->name('admin.event');
     Route::post('/admin/deleteEvent', 'App\Http\Controllers\AdminController@deleteEvent')->name('admin.deleteEvent');
     Route::post('/admin/deleteProduct', 'App\Http\Controllers\AdminController@deleteProduct')->name('admin.deleteProduct');
+
 });
 
 Auth::routes();
