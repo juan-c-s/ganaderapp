@@ -1,14 +1,50 @@
-FROM php:8.2-rc-fpm@sha256:5b6b0ffa84853ebe224141764f3cd8697458b2c570d96b385212876f1fb7b3c9
+FROM php:8.1.4-apache@sha256:aaebcaa8ec215715f9226be80dd4c282caa0af333bf2201522eed6e30f4ed2f6
 
-RUN apt-get update -y && apt-get install -y libmcrypt-dev
+ARG USERNAME=ganaderapp-runner
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN apt-get update -y && apt-get install -y openssl zip unzip git
+RUN docker-php-ext-install pdo_mysql
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN docker-php-ext-install pdo mbstring
 
-WORKDIR /app
-COPY . /app
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
-RUN composer install
+COPY . /var/www/html
 
-EXPOSE 8000
-CMD php artisan serve --host=0.0.0.0 --port=8000
+COPY ./public/.htaccess /var/www/html/.htaccess
+
+RUN cat <<EOF > /etc/apache2/sites-available/000-default.conf
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/public
+
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+EOF
+
+RUN chown -R $USERNAME:$USERNAME .
+
+USER $USERNAME
+
+WORKDIR /var/www/html
+RUN composer install \
+    --ignore-platform-reqs \
+    --no-interaction \
+    --no-plugins \
+    --no-scripts \
+    --prefer-dist
+
+RUN php artisan key:generate
+RUN php artisan migrate
+
+USER root
+
+RUN a2enmod rewrite
+
+RUN service apache2 restart
+
+USER $USERNAME
