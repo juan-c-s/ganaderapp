@@ -73,5 +73,11 @@
     "Enter Max Capacity":"Enter Max Capacity",
     "Send":"Send",
     "Welcome":"Welcome",
-    "Cart Details":"Cart Details"
+    "Cart Details":"Cart Details",
+    "Title":"Title",
+    "Category":"Category",
+    "Location":"Location",
+    "Update":"Update",
+    "Edit":"Edit"
+
 }
