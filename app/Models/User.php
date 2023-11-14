@@ -132,6 +132,16 @@ class User extends Authenticatable
     {
         $this->attributes['name'] = $name;
     }
+    
+    public function getEmail(): string
+    {
+        return $this->attributes['email'];
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->attributes['email'] = $email;
+    }
 
     public function getPassword(): string
     {
