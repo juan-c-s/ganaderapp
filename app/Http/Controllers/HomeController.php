@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 // JUANCAMILO
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\RedirectResponse;
@@ -11,9 +12,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(): View
+    public function index(): View | RedirectResponse
     {
-        return view('home.index');
+        if (Auth::user() && Auth::user()->getRole() == 'admin'){
+            return redirect()->route('admin.index');
+        }else{
+            return view('home.index');
+        }
     }
 
     public function about(): View

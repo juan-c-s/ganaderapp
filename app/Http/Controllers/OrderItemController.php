@@ -23,7 +23,7 @@ class OrderItemController extends Controller
         $cartProducts = [];
         $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
 
-        if(count($cartProductData))
+        if($cartProductData && count($cartProductData))
             $cartProducts = Product::whereIn('id', $cartProductData)->get();    
 
         $total = 0;

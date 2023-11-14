@@ -78,6 +78,12 @@
     "Category":"Category",
     "Location":"Location",
     "Update":"Update",
-    "Edit":"Edit"
-
+    "Edit":"Edit",
+    "Rating":"Rating",
+    "Total users":"Total users",
+    "Total events":"Total events",
+    "Total Products":"Total Products",
+    "Address":"Address",
+    "Email":"Email",
+    "Email Address":"Email Address"
 }

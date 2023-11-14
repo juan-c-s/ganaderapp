@@ -8,9 +8,9 @@
     <div class="offcanvas-body">
         <nav class="navbar bg-body-tertiary my-4">
             <div class="container-fluid flex row m-1">
-                <a class="navbar-brand" href="{{route('admin.index')}}">{{__('Products')}}</a>
+                <a class="navbar-brand" href="{{route('admin.index')}}">{{__('Home')}}</a>
+                <a class="navbar-brand" href="{{route('admin.product')}}">{{_('Products')}}</a>
                 <a class="navbar-brand" href="{{route('admin.event')}}">{{__('Events')}}</a>
-                <a class="navbar-brand" href="{{route('admin.analytics')}}">{{_('Analytics')}}</a>
             </div>
         </nav>
     </div>

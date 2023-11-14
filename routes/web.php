@@ -44,11 +44,14 @@ Route::post('/reviews/save', 'App\Http\Controllers\ReviewController@save')->name
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
-    Route::get('/admin/analytics', 'App\Http\Controllers\AdminController@analytics')->name('admin.analytics');
-    Route::get('/admin/events', 'App\Http\Controllers\AdminController@event')->name('admin.event');
-    Route::post('/admin/deleteEvent', 'App\Http\Controllers\AdminController@deleteEvent')->name('admin.deleteEvent');
-    Route::post('/admin/deleteProduct', 'App\Http\Controllers\AdminController@deleteProduct')->name('admin.deleteProduct');
+    Route::get('/admin/events', 'App\Http\Controllers\AdminEventController@index')->name('admin.event');
 
+    Route::get('/admin/products', 'App\Http\Controllers\AdminProductController@index')->name('admin.product');
+    Route::get('/admin/products/update/{id}', 'App\Http\Controllers\AdminProductController@update')->name('admin.updateProduct');
+    Route::post('/admin/products/updateProduct', 'App\Http\Controllers\AdminProductController@updateProduct')->name('admin.updateProductDB');
+    Route::delete('/admin/products/delete/{id}', 'App\Http\Controllers\AdminProductController@delete')->name('admin.deleteProduct');
+
+    Route::post('/admin/deleteEvent', 'App\Http\Controllers\AdminController@deleteEvent')->name('admin.deleteEvent');
 });
 
 Auth::routes();

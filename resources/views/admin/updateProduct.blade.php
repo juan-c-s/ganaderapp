@@ -17,7 +17,7 @@
             </ul>
             @endif
 
-            <form method="POST" action="{{ route('product.updateProduct') }}">
+            <form method="POST" action="{{ route('admin.updateProductDB') }}">
               @csrf
               <input type="text" class="form-control mb-2" placeholder="Enter title" name="title" value="{{ $viewData["product"]->getTitle() }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ $viewData["product"]->getDescription() }}" />

@@ -11,7 +11,6 @@
                 <th>{{__('Title')}}</th>
                 <th>{{__('Category')}}</th>
                 <th>{{__('Location')}}</th>
-                <th>{{__('Update')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -20,9 +19,6 @@
                     <td>{{ $event->getTitle() }}</td>
                     <td>{{ $event->getCategory() }}</td>
                     <td>{{ $event->getLocation() }}</td>
-                    <td>
-                        <a href="" class="btn btn-primary btn-sm">{{__('Edit')}}</a>
-                    </td>
                 </tr>
             @endforeach
         </tbody>

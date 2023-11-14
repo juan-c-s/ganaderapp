@@ -32,17 +32,15 @@
           
           <a class="nav-link active" href="{{ route('home.toggleLang') }}">{{__('Change Language')}}</a>
           @auth
-          <a class="nav-link active" href="{{ route('home.index') }}">{{__('Home')}}</a>
-          <a class="nav-link active" href="{{ route('product.index') }}">{{__('Marketplace')}}</a>
-          <a class="nav-link active" href="{{ route('product.create') }}">{{__('Create Product')}}</a>
-          <a class="nav-link active" href="{{ route('event.index') }}">{{__('Events')}}</a>
-          <a class="nav-link active" href="{{ route('event.create') }}">{{__('Create Event')}}</a>
-          <a class="nav-link active" href="{{ route('cart.index') }}">{{__('Cart')}}</a>
+            @if(Auth::user()->getRole() == 'user')
+              <a class="nav-link active" href="{{ route('home.index') }}">{{__('Home')}}</a>
+              <a class="nav-link active" href="{{ route('product.index') }}">{{__('Marketplace')}}</a>
+              <a class="nav-link active" href="{{ route('product.create') }}">{{__('Create Product')}}</a>
+              <a class="nav-link active" href="{{ route('event.index') }}">{{__('Events')}}</a>
+              <a class="nav-link active" href="{{ route('event.create') }}">{{__('Create Event')}}</a>
+              <a class="nav-link active" href="{{ route('cart.index') }}">{{__('Cart')}}</a>
+            @endif
           @endauth
-
-          @if (Auth::user() && Auth::user()->getRole() == 'admin')
-            <a class="nav-link active" href="{{ route('admin.index') }}">{{__('Admin')}}</a>
-          @endif
 
           <div class="vr bg-white mx-2 d-none d-lg-block"></div>
           @guest
@@ -61,7 +59,7 @@
 
   <header class="masthead bg-primary text-white text-center py-4">
     <div class="container d-flex align-items-center flex-column">
-      <h2>@yield('subtitle', __('Welcome'))</h2>
+      <!-- <h2>@yield('subtitle', __('Welcome'))</h2> -->
     </div>
   </header>
   <!-- header -->
