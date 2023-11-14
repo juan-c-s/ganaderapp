@@ -168,4 +168,13 @@ class Event extends Model
     {
         $this->attributes['maxCapacity'] = $maxCapacity;
     }
+
+    public function getCreatedAt():string{
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdatedAt():string{
+        return $this->attributes['updated_at'];
+    }
+
 }

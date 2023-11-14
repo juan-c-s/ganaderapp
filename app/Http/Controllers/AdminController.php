@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Product;
 use Illuminate\Http\Request;
+
+
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -45,8 +47,10 @@ class AdminController extends Controller
         $viewData['subtitle'] = __('About us - Online Store');
         $viewData['description'] = __('This is an about page ...');
         $viewData['author'] = __('Developed By');
+        $viewData['events'] = Event::all();
         return view('admin.event')->with('viewData', $viewData);
     }
+
 
     public function deleteEvent(Request $request): Response
     {
