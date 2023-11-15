@@ -22,7 +22,6 @@ class AdminController extends Controller
 
     public function index(Request $request): View
     {
-        // dd("passaa");
         $viewData = [];
         $viewData['title'] = __('About us - Online Store');
         $viewData['subtitle'] = __('About us - Online Store');

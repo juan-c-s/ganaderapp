@@ -78,6 +78,20 @@ class Event extends Model
         $newEvent->setUserId($request->user_id);
         $newEvent->save();
     }
+    
+    public static function updateEvent(Request $request): void
+    {
+        $event = Event::find($request->id);
+        $event->setTitle($request->title);
+        $event->setCategory($request->category);
+        $event->setMaxCapacity($request->maxCapacity);
+        $event->setDate($request->date);
+        $event->setDescription($request->description);
+        $event->setImage($request->image);
+        $event->setLocation($request->location);
+        $event->setUserId($request->user_id);
+        $event->save();
+    }
 
     public function getId(): int
     {

@@ -27,7 +27,7 @@
               <input type="text" class="form-control mb-2" placeholder="Enter Supplier" name="supplier" value="{{ $viewData["product"]->getSupplier() }}" />
               <input type="hidden" name="id" value="{{$viewData["product"]->getId()}}" />
               <input type="hidden" name="user_id" value="{{$viewData["product"]->getUserId()}}" />
-              <input type="submit" class="btn btn-primary" value="Update" />
+              <input type="submit" class="btn btn-primary" value="{{__('Update')}}" />
             </form>
           </div>
         </div>

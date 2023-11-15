@@ -13,11 +13,11 @@
 <body>
   <!-- header -->
   @if (Auth::user() && Auth::user()->getRole() == 'admin')
-    @include('layouts.sidebar') 
+  @include('layouts.sidebar') 
   @endif
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
     @if (Auth::user() && Auth::user()->getRole() == 'admin')
-
+    
       <i class=" fa-bars btn text-white mx-4 px-2 fw-lighter fs-2"   type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
     @endif
     <div class="container">

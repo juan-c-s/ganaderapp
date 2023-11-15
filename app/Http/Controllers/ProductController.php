@@ -66,7 +66,7 @@ class ProductController extends Controller
     public function create(): View
     {
         $viewData = []; //to be sent to the view
-        $viewData['title'] = 'Add Cow';
+        $viewData['title'] =__('Add Cow');
         $viewData['subtitle'] = __('Add Cow');
 
         return view('product.create')->with('viewData', $viewData);
