@@ -20,7 +20,7 @@
   <br>
 <div class="desc">
   <p class="text-white">
-    A paragraph of placeholder text. We're using it here to show the use of the clearfix class. We're adding quite a few meaningless phrases here to demonstrate how the columns interact here with the floated image.
+    {{__('Project Description')}}
   </p>
 
   <p class="text-white">
