@@ -18,10 +18,11 @@ class Product extends Model
      * $this->attributes['id'] - int - contains the product primary key (id)
      * $this->attributes['title'] - string - contains the product name
      * $this->attributes['price'] - int - contains the product price
-     * $this->attributes['image'] - int - contains the product price
-     * $this->attributes['description'] - int - contains the product price
-     * $this->attributes['category'] - int - contains the product price
-     * $this->attributes['supplier'] - int - contains the product price
+     * $this->attributes['image'] - image - contains the product price
+     * $this->attributes['description'] - string - contains the product price
+     * $this->attributes['category'] - string - contains the product price
+     * $this->attributes['supplier'] - string - contains the product supplier
+     * $this->attributes['quantity'] - int - contains the quantity of products in cart
      * ***#*** Agregar created_at y updated_at
      */
     protected $fillable = ['title', 'price', 'image', 'description', 'rating', 'category', 'supplier'];
@@ -196,5 +197,15 @@ class Product extends Model
     public function setRating(string $rating): void
     {
         $this->attributes['rating'] = $rating;
+    }
+
+    public function getQuantity(): string
+    {
+        return $this->attributes['quantity'];
+    }
+
+    public function setQuantity(int $quantity): void
+    {
+        $this->attributes['quantity'] = $quantity;
     }
 }

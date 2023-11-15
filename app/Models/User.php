@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -62,6 +63,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function deleteById(Request $request): void
+    {
+        $user = User::findOrFail($request->id);
+        $user->delete();
+    }
 
     public function products()
     {
@@ -133,6 +140,16 @@ class User extends Authenticatable
         $this->attributes['name'] = $name;
     }
     
+    public function getEmail(): string
+    {
+        return $this->attributes['email'];
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->attributes['email'] = $email;
+    }
+
     public function getEmail(): string
     {
         return $this->attributes['email'];

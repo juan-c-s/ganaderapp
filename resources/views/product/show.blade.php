@@ -3,6 +3,18 @@
 @section('title', $viewData["title"])
 @section('subtitle', $viewData["subtitle"])
 @section('content')
+@if(session()->has('success_msg'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session()->get('success_msg') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif
+@if(session()->has('alert_msg'))
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    {{ session()->get('alert_msg') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@endif
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
@@ -29,8 +41,10 @@
             {{__('Supplier')}} :  {{ $viewData["products"]->getSupplier() }}
           </h5>
           <h5 class="card-title">
-            {{__('Image')}}: <img src="{{$viewData["products"]->getImage()}}" class="img-fluid img-thumbnail">
+            {{__('Image')}}: <img style="width: 30%; height: 30%;" src="{{$viewData['products']->getImage()}}" class="img-fluid img-thumbnail">
         </h5>
+        <a href="{{ route('cart.add', ['id' => $viewData['products']->getId()]) }}"
+              class="btn btn-dark">{{__('Add To Cart')}}</a>
         @if ((Auth::user() && Auth::user()->getRole() == 'admin') || (Auth::user()->getId() == $viewData["products"]->getUserId())) 
           <form class="m-2" method="GET" action="{{ route('product.update', ['id'=> $viewData["products"]->getId()]) }}">
           @csrf
@@ -40,10 +54,10 @@
           </form>
 
           <form class ="m-2" method="POST" action="{{ route('product.delete') }}">
-          @csrf
-          <input type="hidden" name="id" value="{{$viewData["products"]->getId()}}" />
-          <input type="hidden" name="user_id" value="{{$viewData["products"]->getUserId()}}" />
-          <input type="submit" class="btn btn-dark" value="Delete Product" />
+            @csrf
+            <input type="hidden" name="id" value="{{$viewData["products"]->getId()}}" />
+            <input type="hidden" name="user_id" value="{{$viewData["products"]->getUserId()}}" />
+            <input type="submit" class="btn btn-dark" value="Delete Product" />
           </form>
         @endif
 
