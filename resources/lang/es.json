@@ -1,6 +1,6 @@
 {
     "Login": "Iniciar sesión",
-    "Remember Me": "Recuérdame",
+    "Remember Me": "Recordarme",
     "Forgot Your Password?": "¿Olvidaste tu contraseña?",
     "Register": "Registrarse",
     "Name": "Nombre",
@@ -86,5 +86,8 @@
     "Address": "Dirección",
     "Email": "Correo",
     "Email Address": "Dirección de Correo Electrónico",
-    "Delete":"Eliminar"
+    "Delete": "Eliminar",
+    "Update Event": "Actualizar Evento",
+    "Event": "Evento",
+    "Admin Panel": "Panel de Administración"
 }
