@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('category');
             $table->date('date');
             $table->string('description');
-            $table->longText('image');
+            $table->longText('image')->nullable();
             $table->string('location');
+            $table->string('weather')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

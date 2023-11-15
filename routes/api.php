@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/events', 'App\Http\Controllers\api\EventApiController@getAllEvents')->name('event.api.all');
 Route::post('/events/dateFilter', 'App\Http\Controllers\api\EventApiController@dateFilter')->name('event.api.dateFilter');
+Route::get('/products', 'App\Http\Controllers\api\ProductApiController@getAllProducts')->name('product.api.all');
 Route::post('/products/supplierFilter', 'App\Http\Controllers\api\ProductApiController@supplierFilter')->name('product.api.supplierFilter');

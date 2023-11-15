@@ -12,7 +12,6 @@ $(document).ready(function() {
         break;
       }
     }
-    console.log(miCookieValor);
     var selectedDate = $(this).val();
     var resultDiv = $('#results');
     $.ajax({

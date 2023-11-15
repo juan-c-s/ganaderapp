@@ -1,3 +1,4 @@
+
 {{-- JUANCAMILO --}}
 <!doctype html>
 <html lang="en">
@@ -7,14 +8,21 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
   <title>@yield('title', 'Ganaderapp')</title>
 </head>
 <body>
   <!-- header -->
+  @if (Auth::user() && Auth::user()->getRole() == 'admin')
+  @include('layouts.sidebar') 
+  @endif
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
+    @if (Auth::user() && Auth::user()->getRole() == 'admin')
+    
+      <i class=" fa-bars btn text-white mx-4 px-2 fw-lighter fs-2"   type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
+    @endif
     <div class="container">
-      <a class="navbar-brand" href="{{ route('home.index') }}">{{__('Ganaderapp')}}</a>
+        <a class="navbar-brand" href="{{ route('home.index') }}">{{__('Ganaderapp')}}</a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,22 +31,25 @@
         <div class="navbar-nav ms-auto">
           
         @auth
-          <a class="nav-link active" href="{{ route('home.index') }}">{{__('Home')}}</a>
-          <div class="dropdown">
-              <p class="dropbtn nav-link active" onclick="myFunction('myDropdown')">{{__('Product')}}</p>
-              <div class="dropdown-content" id="myDropdown">
-                <a class="nav-link active" href="{{ route('product.index') }}">{{__('Marketplace')}}</a>
-                <a class="nav-link active" href="{{ route('product.create') }}">{{__('Create a Product')}}</a>
-              </div>
-          </div>
-          <div class="dropdown">
-              <p class="dropbtn nav-link active" onclick="myFunction('myDropdown2')">{{__('Event')}}</p>
-              <div class="dropdown-content" id="myDropdown2">
-                <a class="nav-link active" href="{{ route('event.index') }}">{{__('All Events')}}</a>
-                <a class="nav-link active" href="{{ route('event.create') }}">{{__('Create an Event')}}</a>
-              </div>
-          </div>
-          <a class="nav-link active" href="{{ route('cart.index') }}">{{__('Cart')}}</a>
+          @if(Auth::user()->getRole() == 'user')
+            <a class="nav-link active" href="{{ route('home.toggleLang') }}">{{__('Change Language')}}</a>
+            <a class="nav-link active" href="{{ route('home.index') }}">{{__('Home')}}</a>
+            <div class="dropdown">
+                <p class="dropbtn nav-link active" onclick="myFunction('myDropdown')">{{__('Product')}}</p>
+                <div class="dropdown-content" id="myDropdown">
+                  <a class="nav-link active" href="{{ route('product.index') }}">{{__('Marketplace')}}</a>
+                  <a class="nav-link active" href="{{ route('product.create') }}">{{__('Create a Product')}}</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <p class="dropbtn nav-link active" onclick="myFunction('myDropdown2')">{{__('Event')}}</p>
+                <div class="dropdown-content" id="myDropdown2">
+                  <a class="nav-link active" href="{{ route('event.index') }}">{{__('All Events')}}</a>
+                  <a class="nav-link active" href="{{ route('event.create') }}">{{__('Create an Event')}}</a>
+                </div>
+            </div>
+            <a class="nav-link active" href="{{ route('cart.index') }}">{{__('Cart')}}</a>
+            @endif
           @endauth
 
           <div class="vr bg-white mx-2 d-none d-lg-block"></div>

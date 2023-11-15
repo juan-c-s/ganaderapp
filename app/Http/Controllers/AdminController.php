@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 // JUANCAMILO
-use App\Models\Event;
+use App\Models\User;
 use App\Models\Product;
+use App\Models\Event;
 use Illuminate\Http\Request;
+
+
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -20,25 +23,15 @@ class AdminController extends Controller
     public function index(Request $request): View
     {
         $viewData = [];
-        $viewData['title'] = 'About us - Online Store';
-        $viewData['subtitle'] = 'About us - Online Store';
-        $viewData['description'] = 'This is an about page ...';
-        $viewData['author'] = 'Developed by: Your Name';
-
+        $viewData['title'] = __('About us - Online Store');
+        $viewData['subtitle'] = __('About us - Online Store');
+        $viewData['author'] = __('Developed By');
+        $viewData['users'] = User::all();
+        $viewData['userCount'] = User::count();
+        $viewData['eventCount'] = Event::count();
+        $viewData['productCount'] = Product::count();
         return view('admin.index')->with('viewData', $viewData);
     }
 
-    public function deleteEvent(Request $request): Response
-    {
-        Event::where('title', 'LIKE', $request->event)->delete();
 
-        return redirect()->route('admin.index');
-    }
-
-    public function deleteProduct(Request $request): Response
-    {
-        Product::where('title', 'LIKE', $request->product)->delete();
-
-        return redirect()->route('admin.index');
-    }
 }

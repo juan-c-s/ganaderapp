@@ -1,11 +1,4 @@
-{{-- DONOVAN --}}
 
-@extends('layouts.app')
-@section('title', $viewData["title"])
-@section('subtitle', $viewData["subtitle"])
-@section('content')
-<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-<script src="{{asset('js/event/filterByDate.js')}}"></script>
 @if(session()->has('success_msg'))
   <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ session()->get('success_msg') }}
@@ -31,12 +24,3 @@
             <p>{{$event->getDescription()}}</p>
             <p>{{$event->getDate()}}</p>
           </div>
-        </div>
-      </div>
-    @endforeach
-  </div>
-  <div id="events" style="display: none;">'@json($viewData["events"])'</div>
-@else
-  <h3>No hay eventos registrados</h3>
-@endif
-@endsection

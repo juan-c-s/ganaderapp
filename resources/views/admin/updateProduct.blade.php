@@ -3,18 +3,6 @@
 @section('title', $viewData["title"])
 @section('subtitle', $viewData["subtitle"])
 @section('content')
-@if(session()->has('success_msg'))
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    {{ session()->get('success_msg') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-@endif
-@if(session()->has('alert_msg'))
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    {{ session()->get('alert_msg') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-@endif
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -29,7 +17,7 @@
             </ul>
             @endif
 
-            <form method="POST" action="{{ route('product.updateProduct') }}">
+            <form method="POST" action="{{ route('admin.updateProductDB') }}">
               @csrf
               <input type="text" class="form-control mb-2" placeholder="Enter title" name="title" value="{{ $viewData["product"]->getTitle() }}" />
               <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ $viewData["product"]->getDescription() }}" />
@@ -39,7 +27,7 @@
               <input type="text" class="form-control mb-2" placeholder="Enter Supplier" name="supplier" value="{{ $viewData["product"]->getSupplier() }}" />
               <input type="hidden" name="id" value="{{$viewData["product"]->getId()}}" />
               <input type="hidden" name="user_id" value="{{$viewData["product"]->getUserId()}}" />
-              <input type="submit" class="btn btn-primary" value="Update" />
+              <input type="submit" class="btn btn-primary" value="{{__('Update')}}" />
             </form>
           </div>
         </div>

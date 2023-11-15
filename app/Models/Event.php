@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 // SIMON
 // DONOVAN
 
@@ -22,6 +23,7 @@ class Event extends Model
      * $this->attributes['description'] - string - contains a event description
      * $this->attributes['image'] - string - contains a base64 encoded image
      * $this->attributes['location'] - string - contains the physical location
+     * $this->attributes['weather'] - string - contains the current weather
      */
     protected $fillable = ['title', 'category', 'maxCapacity', 'date', 'description', 'image', 'location'];
 
@@ -75,6 +77,20 @@ class Event extends Model
         $newEvent->setLocation($request->location);
         $newEvent->setUserId($request->user_id);
         $newEvent->save();
+    }
+    
+    public static function updateEvent(Request $request): void
+    {
+        $event = Event::find($request->id);
+        $event->setTitle($request->title);
+        $event->setCategory($request->category);
+        $event->setMaxCapacity($request->maxCapacity);
+        $event->setDate($request->date);
+        $event->setDescription($request->description);
+        $event->setImage($request->image);
+        $event->setLocation($request->location);
+        $event->setUserId($request->user_id);
+        $event->save();
     }
 
     public function getId(): int
@@ -147,6 +163,16 @@ class Event extends Model
         $this->attributes['location'] = $location;
     }
 
+    public function getWeather(): string
+    {
+        return $this->attributes['weather'];
+    }
+
+    public function setWeather(string $weather): void
+    {
+        $this->attributes['weather'] = $weather;
+    }
+
     public function getMaxCapacity(): int
     {
         return $this->attributes['maxCapacity'];
@@ -156,4 +182,13 @@ class Event extends Model
     {
         $this->attributes['maxCapacity'] = $maxCapacity;
     }
+
+    public function getCreatedAt():string{
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdatedAt():string{
+        return $this->attributes['updated_at'];
+    }
+
 }

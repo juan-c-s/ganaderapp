@@ -1,5 +1,7 @@
 {{-- SIMON --}}
 @extends('layouts.app')
+@section('title', $viewData["title"])
+@section('subtitle', $viewData["subtitle"])
 @section('content')
     <div class="container" style="margin-top: 80px">
         @if(session()->has('success_msg'))

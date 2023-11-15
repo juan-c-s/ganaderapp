@@ -1,68 +1,61 @@
-{{-- JUANCAMILO --}}
 @extends('layouts.app')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('admin.deleteEvent') }}">
-                        @csrf
+<!-- resources/views/your_view.blade.php -->
 
-                        <div class="row mb-3">
-                            <label for="event" class="col-md-4 col-form-label text-md-end">{{ __('Event') }}</label>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{__('Products')}}</h5>
+                <p class="card-text">{{__('Total Products')}}: {{$viewData['productCount']}}</p>
+            </div>
+        </div>
+    </div>
 
-                            <div class="col-md-6">
-                                <input id="event" type="text" class="form-control @error('event') is-invalid @enderror" name="event" value="{{ old('event') }}" required autocomplete="event" autofocus>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{__('Events')}}</h5>
+                <p class="card-text">{{__('Total events')}}: {{$viewData['eventCount']}}</p>
+            </div>
+        </div>
+    </div>
 
-                                @error('event')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn bg-primary text-white">
-                                    {{ __('Delete Event') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="{{ route('admin.deleteProduct') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="product" class="col-md-4 col-form-label text-md-end">{{ __('Product') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="product" type="text" class="form-control @error('product') is-invalid @enderror" name="product" value="{{ old('product') }}" required autocomplete="product" autofocus>
-
-                                @error('product')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn bg-primary text-white">
-                                    {{ __('Delete Product') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{__('Users')}}</h5>
+                <p class="card-text">{{__('Total users')}}: {{$viewData['userCount']}}</p>
             </div>
         </div>
     </div>
 </div>
+
+<div class="container mt-4">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>{{__('Name')}}</th>
+                <th>{{__('Address')}}</th>
+                <th>{{__('Email')}}</th>
+                <th>{{__('Role')}}</th>
+                <th>{{__('Wallet')}}</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($viewData["users"] as $user)
+                <tr>
+                    <td>{{ $user->getName() }}</td>
+                    <td>{{ $user->getAddress() }}</td>
+                    <td>{{ $user->getEmail() }}</td>
+                    <td>{{ $user->getRole() }}</td>
+                    <td>{{ $user->getWallet() }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
 @endsection
