@@ -85,5 +85,9 @@
     "Total Products":"Total Products",
     "Address":"Address",
     "Email":"Email",
-    "Email Address":"Email Address"
+    "Email Address":"Email Address",
+    "Delete":"Delete",
+    "Update Event": "Update Event",
+    "Event":"Event"
+
 }
