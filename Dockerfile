@@ -39,7 +39,7 @@ RUN composer install \
     --prefer-dist
 
 RUN php artisan key:generate
-RUN php artisan migrate
+RUN php artisan migrate:refresh
 
 USER root
 
