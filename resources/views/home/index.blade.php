@@ -22,10 +22,6 @@
   <p class="text-white">
     {{__('Project Description')}}
   </p>
-
-  <p class="text-white">
-    As you can see the paragraphs gracefully wrap around the floated image. Now imagine how this would look with some actual content in here, rather than just this boring placeholder text that goes on and on, but actually conveys no tangible information at. It simply takes up space and should not really be read.
-  </p>
 </div>
 
 @endsection

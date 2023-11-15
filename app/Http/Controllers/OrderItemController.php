@@ -36,6 +36,9 @@ class OrderItemController extends Controller
             }
 
             $viewData = [];
+            $viewData['title'] = __('Cart');
+            $viewData['subtitle'] = __('Cart');
+
             $viewData['cartProducts'] = $cartProducts;
             $viewData['totalCart'] = $total;
 
@@ -43,7 +46,7 @@ class OrderItemController extends Controller
         }
         else
         {
-            return back()->with('alert_msg','There is nothing in the cart, go to Marketplace');
+            return back()->with('alert_msg',__('There is nothing in the cart, go to Marketplace'));
         }
     }
 
@@ -69,7 +72,7 @@ class OrderItemController extends Controller
                 $quantity = 1;
                 $cartProducts->setQuantity($quantity);
                 $cartProducts->save();
-                return back()->with('alert_msg', 'You can`t subtract more');
+                return back()->with('alert_msg', __('You can`t subtract more'));
             }
             else{
                 $quantity -= 1;
@@ -96,11 +99,11 @@ class OrderItemController extends Controller
                 $cartProducts->setQuantity($quantity);
                 $cartProducts->save();
 
-                return back()->with('success_msg', 'Product deleted from cart.');
+                return back()->with('success_msg', __('Product deleted from cart.'));
             }
         
 
-        return back()->with('error_msg', 'The product does not exit on the cart.');
+        return back()->with('error_msg', __('The product does not exit on the cart.'));
     }
 
     public function add(Request $request, string $id): RedirectResponse
@@ -116,7 +119,7 @@ class OrderItemController extends Controller
         $cartProductData[$id] = $id;
         $request->session()->put('cart_product_data', $cartProductData);
 
-        return back()->with('success_msg', 'Product added at the cart');
+        return back()->with('success_msg', __('Product added at the cart'));
     }
 
     public function clear(Request $request)
@@ -156,11 +159,11 @@ class OrderItemController extends Controller
         }
 
         if ($total == 0){
-            return back()->with('alert_msg', 'You dont have any product in your cart');
+            return back()->with('alert_msg', __('You dont have any product in your cart'));
         }
         else if($wallet < $total)
         {
-            return back()->with('alert_msg','You dont have enought cash to buy, please check your wallet');
+            return back()->with('alert_msg',__('You dont have enought cash to buy, please check your wallet'));
         }
         else
         {
@@ -172,6 +175,6 @@ class OrderItemController extends Controller
             $Order->save();
         }
 
-        return redirect()->route('cart.clear')->with('success_msg', 'Buy complete');
+        return redirect()->route('cart.clear')->with('success_msg', __('Buy complete'));
     }
 }

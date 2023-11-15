@@ -91,5 +91,13 @@
     "Event":"Event",
     "Admin Panel":"Admin Panel",
     "WELCOME TO OUR APP":"WELCOME TO OUR APP",
-    "Project Description":"El proyecto que estamos proponiendo es la creación de una plataforma web dedicada a la comercialización y promoción de productos ganaderos, así como la organización y divulgación de eventos relacionados con la ganadería."
+    "Project Description":"El proyecto que estamos proponiendo es la creación de una plataforma web dedicada a la comercialización y promoción de productos ganaderos, así como la organización y divulgación de eventos relacionados con la ganadería.",
+    "There is nothing in the cart, go to Marketplace":"There is nothing in the cart, go to Marketplace",
+    "You can`t subtract more":"You can`t subtract more",
+    "Product deleted from cart.":"Product deleted from cart.",
+    "The product does not exit on the cart.":"The product does not exit on the cart.",
+    "Product added at the cart":"Product added at the cart",
+    "You dont have any product in your cart":"You dont have any product in your cart",
+    "You dont have enought cash to buy, please check your wallet":"You dont have enought cash to buy, please check your wallet",
+    "Buy complete":"Buy complete"
 }
