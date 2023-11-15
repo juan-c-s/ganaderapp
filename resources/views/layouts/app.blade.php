@@ -18,21 +18,21 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
     @if (Auth::user() && Auth::user()->getRole() == 'admin')
     
-      <i class=" fa-bars btn text-white mx-4 px-2 fw-lighter fs-2"   type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
+    <i class=" fa-bars btn text-white mx-4 px-2 fw-lighter fs-2"   type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i>
     @endif
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home.index') }}">{{__('Ganaderapp')}}</a>
-
+      <a class="navbar-brand" href="{{ route('home.index') }}">{{__('Ganaderapp')}}</a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav ms-auto">
-          
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        
         @auth
+          <a class="nav-link active text-white" href="{{ route('home.toggleLang') }}">{{__('Change Language')}}</a>
           @if(Auth::user()->getRole() == 'user')
-            <a class="nav-link active" href="{{ route('home.toggleLang') }}">{{__('Change Language')}}</a>
             <a class="nav-link active" href="{{ route('home.index') }}">{{__('Home')}}</a>
             <div class="dropdown">
                 <p class="dropbtn nav-link active" onclick="myFunction('myDropdown')">{{__('Product')}}</p>
