@@ -13,7 +13,7 @@ use GuzzleHttp\Client;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use DateTime;
+
 class EventController extends Controller
 {
     public function __construct()
@@ -28,17 +28,15 @@ class EventController extends Controller
         $viewData['title'] = __('Events - Ganaderapp');
         $viewData['subtitle'] = __('List of events');
         $viewData['events'] = Event::all();
-        $changed = false;
         foreach ($viewData['events'] as $key => $event) {
-            $updatedDateTime = new DateTime($event->getUpdatedAt());
-            $timeDifference = $updatedDateTime->diff(new DateTime());
-            if( $timeDifference->h > 5){
-                $event->setWeather($this->getWeatherByCity($event->getLocation()));
+            $changed = false;
+            if(!$event->getWeather()){
                 $changed = true;
+                $event->setWeather($this->getWeatherByCity($event->getLocation()));
             }
+            if($changed)
+                $event->save();
         }
-        if($changed)
-            $event->save();
         return view('event.index')->with('viewData', $viewData);
     }
 
