@@ -34,28 +34,31 @@
 </div>
 
 <div class="container mt-4">
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th>{{__('Name')}}</th>
-                <th>{{__('Address')}}</th>
-                <th>{{__('Email')}}</th>
-                <th>{{__('Role')}}</th>
-                <th>{{__('Wallet')}}</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($viewData["users"] as $user)
-                <tr>
-                    <td>{{ $user->getName() }}</td>
-                    <td>{{ $user->getAddress() }}</td>
-                    <td>{{ $user->getEmail() }}</td>
-                    <td>{{ $user->getRole() }}</td>
-                    <td>{{ $user->getWallet() }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="card">
+            <table class="card-body table table-bordered">
+                <thead class="card-title thead-dark">
+                    <tr>
+                        <th>{{__('Name')}}</th>
+                        <th>{{__('Address')}}</th>
+                        <th>{{__('Email')}}</th>
+                        <th>{{__('Role')}}</th>
+                        <th>{{__('Wallet')}}</th>
+                    </tr>
+                </thead>
+                <tbody class="card-text">
+                @foreach($viewData["users"] as $user)
+                        <tr>
+                            <td>{{ $user->getName() }}</td>
+                            <td>{{ $user->getAddress() }}</td>
+                            <td>{{ $user->getEmail() }}</td>
+                            <td>{{ $user->getRole() }}</td>
+                            <td>{{ $user->getWallet() }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 @endsection

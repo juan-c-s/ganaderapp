@@ -36,6 +36,8 @@ class OrderItemController extends Controller
             }
 
             $viewData = [];
+            $viewData['title'] = 'Shopping Cart';
+            $viewData['subtitle'] = 'Shopping Cart';
             $viewData['cartProducts'] = $cartProducts;
             $viewData['totalCart'] = $total;
 

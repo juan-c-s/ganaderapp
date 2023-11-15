@@ -89,5 +89,9 @@
     "Delete": "Eliminar",
     "Update Event": "Actualizar Evento",
     "Event": "Evento",
-    "Admin Panel": "Panel de Administración"
+    "Admin Panel": "Panel de Administración",
+    "WELCOME TO OUR APP":"BIENVENIDOS A NUESTRA PAGINA",
+    "Project Description":"El proyecto que estamos proponiendo es la creación de una plataforma web dedicada a la comercialización y promoción de productos ganaderos, así como la organización y divulgación de eventos relacionados con la ganadería.",
+    "Search it by supplier":"Buscalo por proveedor",
+    "Shopping Cart":"Carrito de Compras"
 }

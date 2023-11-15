@@ -22,7 +22,7 @@
   </div>
 @endif
 <div class="input-group mb-3">
-      <input type="search" id="supplier" placeholder="Search it by supplier">
+  <input type="search" id="supplier" placeholder="Search it by supplier">
 </div>
 
   <div id='results' class="row">
