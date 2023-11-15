@@ -93,6 +93,13 @@
     "WELCOME TO OUR APP":"WELCOME TO OUR APP",
     "Project Description":"The project we are proposing is the creation of a web platform dedicated to the marketing and promotion of livestock products, as well as the organization and dissemination of events related to livestock farming.",
     "Search it by supplier":"Search it by supplier",
-    "Shopping Cart":"Shooping Cart"
-    
+    "Shopping Cart":"Shooping Cart",
+    "There is nothing in the cart, go to Marketplace":"There is nothing in the cart, go to Marketplace",
+    "You can`t subtract more":"You can`t subtract more",
+    "Product deleted from cart.":"Product deleted from cart.",
+    "The product does not exit on the cart.":"The product does not exit on the cart.",
+    "Product added at the cart":"Product added at the cart",
+    "You dont have any product in your cart":"You dont have any product in your cart",
+    "You dont have enought cash to buy, please check your wallet":"You dont have enought cash to buy, please check your wallet",
+    "Buy complete":"Buy complete"
 }

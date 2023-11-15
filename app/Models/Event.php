@@ -163,7 +163,7 @@ class Event extends Model
         $this->attributes['location'] = $location;
     }
 
-    public function getWeather(): string
+    public function getWeather(): string | null
     {
         return $this->attributes['weather'];
     }

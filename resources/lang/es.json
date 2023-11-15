@@ -93,5 +93,13 @@
     "WELCOME TO OUR APP":"BIENVENIDOS A NUESTRA PAGINA",
     "Project Description":"El proyecto que estamos proponiendo es la creación de una plataforma web dedicada a la comercialización y promoción de productos ganaderos, así como la organización y divulgación de eventos relacionados con la ganadería.",
     "Search it by supplier":"Buscalo por proveedor",
-    "Shopping Cart":"Carrito de Compras"
+    "Shopping Cart":"Carrito de Compras",
+    "There is nothing in the cart, go to Marketplace": "No hay nada en el carrito, ve al Mercado",
+    "You can`t subtract more": "No puedes restar más",
+    "Product deleted from cart.": "Producto eliminado del carrito.",
+    "The product does not exit on the cart.": "El producto no existe en el carrito.",
+    "Product added at the cart": "Producto añadido al carrito",
+    "You don't have any product in your cart": "No tienes ningún producto en tu carrito",
+    "You don't have enough cash to buy, please check your wallet": "No tienes suficiente dinero para comprar, por favor verifica tu billetera",
+    "Buy complete": "Compra completada"
 }
