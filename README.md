@@ -17,4 +17,4 @@ Para más informacion acerca de laravel, consular este link https://laravel.com/
 - php artisan migrate   (Generar las tablas pertinentes)
 
 
-wiki : https://docs.google.com/document/d/1GjIyKrjM1PkndZuQJc9qv9AHSMFQaOEMBM6Aa17vP-U/edit?usp=sharing
+wiki : [https://docs.google.com/document/d/1GjIyKrjM1PkndZuQJc9qv9AHSMFQaOEMBM6Aa17vP-U/edit?usp=sharing](https://github.com/juan-c-s/ganaderapp/wiki)https://github.com/juan-c-s/ganaderapp/wiki
